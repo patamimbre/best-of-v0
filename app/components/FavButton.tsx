@@ -5,17 +5,26 @@ import { SelectComponent } from "db/schema";
 import { ComponentWithFavorites, toggleFavoriteMutation } from "~/utils/components";
 import { useAuth } from "@clerk/tanstack-start";
 import { cn } from "~/lib/utils";
+import { toast } from "sonner";
 
 export default function FavButton({
   component,
 }: {
   component: ComponentWithFavorites;
 }) {
-  const { userId } = useAuth();
+  const { userId, isSignedIn } = useAuth();
   const { mutate: toggleFavorite } = toggleFavoriteMutation(component.id);
 
+  const handleFavoriteClick = () => {
+    if (!isSignedIn) {
+      toast.info("Please sign in to favorite components");
+    } else {
+      toggleFavorite();
+    }
+  }
+
   return (
-    <Button variant="secondary" onClick={() => toggleFavorite()}>
+    <Button variant="secondary" onClick={handleFavoriteClick}>
       <Heart
         className={cn(
           userId &&
