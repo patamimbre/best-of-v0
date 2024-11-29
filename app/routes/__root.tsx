@@ -1,12 +1,11 @@
 import {
-  Link,
   Outlet,
   ScrollRestoration,
   createRootRouteWithContext,
 } from '@tanstack/react-router'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { createServerFn, Meta, Scripts } from '@tanstack/start'
+import { Meta, Scripts } from '@tanstack/start'
 import * as React from 'react'
 import type { QueryClient } from '@tanstack/react-query'
 import { ClerkProvider } from '@clerk/tanstack-start'
@@ -15,8 +14,7 @@ import { NotFound } from '~/components/NotFound'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
 import Navbar from '~/components/Navbar'
-import { getAuth } from '@clerk/tanstack-start/server'
-import { getWebRequest } from 'vinxi/http'
+import { Toaster } from "~/components/ui/sonner"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -88,6 +86,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <Navbar />
         {children}
+        <Toaster />
         <ScrollRestoration />
         <TanStackRouterDevtools position="bottom-right" />
         <ReactQueryDevtools buttonPosition="bottom-left" />

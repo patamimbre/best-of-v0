@@ -4,8 +4,10 @@ import { Button } from "~/components/ui/button"
 import { Github, Globe, Heart, Code, AtSign } from 'lucide-react'
 import { Link } from "@tanstack/react-router"
 import { SelectComponent } from "db/schema"
+import FavButton from "./FavButton"
+import { ComponentWithFavorites } from "~/utils/components"
 
-export function ComponentCard({ component }: Readonly<{ component: SelectComponent }>) {
+export function ComponentCard({ component }: Readonly<{ component: ComponentWithFavorites }>) {
   return (
     <Card className="flex flex-col w-full max-w-xl overflow-hidden">
       <CardHeader className="p-0">
@@ -57,10 +59,7 @@ export function ComponentCard({ component }: Readonly<{ component: SelectCompone
           )}
         </div>
         <div className="flex">
-          <Button variant="secondary">
-            <Heart/>
-            <span>{component.favCount}</span>
-          </Button>
+          <FavButton component={component} />
         </div>
       </CardFooter>
     </Card>

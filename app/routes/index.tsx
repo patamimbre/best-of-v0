@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '~/components/ui/button'
 import { createServerFn } from '@tanstack/start'
 import { db } from 'db'
-import { componentsTable } from 'db/schema';
+import { components } from 'db/schema';
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import { ComponentCard } from '~/components/ComponentCard';
 import { componentsQueryOptions, orderByOptions } from '~/utils/components';

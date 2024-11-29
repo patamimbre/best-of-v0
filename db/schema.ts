@@ -1,8 +1,8 @@
-import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { foreignKey, integer, primaryKey, sqliteTable, text, unique, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
 import { relations, sql } from "drizzle-orm";
 
-export const componentsTable = sqliteTable("components", {
+export const components = sqliteTable("components", {
   id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
   name: text().notNull(),
   description: text().notNull(),
@@ -16,28 +16,27 @@ export const componentsTable = sqliteTable("components", {
   siteUrl: text().notNull(),
   imageUrl: text().notNull(),
   createdAt: integer({ mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
-  favCount: integer().notNull().default(0),
 });
 
-export const favoritesTable = sqliteTable("favorites", {
+export const favorites = sqliteTable("favorites", {
+  id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
   userId: text().notNull(),
-  componentId: text().notNull(),
+  componentId: text().notNull().references(() => components.id),
   },
   (table) => ({
-    pk: primaryKey({ columns: [table.userId, table.componentId] }),
+    favoritesComponentIdFk: foreignKey({
+      columns: [table.componentId],
+      foreignColumns: [components.id],
+      name: 'favorites_component_id_fk',
+    }),
+    // no duplicated pairs of userId and componentId
+    unique: uniqueIndex('unique_user_component').on(table.userId, table.componentId),
   })
 );
 
-// A component can have many favorites from different userIds
-export const favoritesRelations = relations(favoritesTable, ({ one }) => ({
-  component: one(componentsTable, {
-    fields: [favoritesTable.componentId],
-    references: [componentsTable.id],
-  }),
-}));
 
-export type InsertComponent = typeof componentsTable.$inferInsert;
-export type SelectComponent = typeof componentsTable.$inferSelect;
+export type InsertComponent = typeof components.$inferInsert;
+export type SelectComponent = typeof components.$inferSelect;
 
-export type InsertFavorite = typeof favoritesTable.$inferInsert;
-export type SelectFavorite = typeof favoritesTable.$inferSelect;
+export type InsertFavorite = typeof favorites.$inferInsert;
+export type SelectFavorite = typeof favorites.$inferSelect;

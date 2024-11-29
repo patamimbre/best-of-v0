@@ -2,17 +2,15 @@ import { seed } from "drizzle-seed";
 import { faker } from "@faker-js/faker";
 import { db } from "db";
 import * as schema from "./schema";
-import { count } from "drizzle-orm";
-import { eq } from "drizzle-orm";
 
 async function main() {
   // clear the components and favorites tables. Avoid dropping the users table.
-  await db.delete(schema.componentsTable);
-  await db.delete(schema.favoritesTable);
+  await db.delete(schema.components);
+  await db.delete(schema.favorites);
 
   // Bulk insert components
-  const componentsData = await db
-    .insert(schema.componentsTable)
+  const components = await db
+    .insert(schema.components)
     .values(
       Array.from({ length: 10 }, () => ({
         name: faker.commerce.productName(),
@@ -24,24 +22,22 @@ async function main() {
         siteUrl: faker.internet.url(),
         imageUrl: faker.image.url(),
         createdAt: faker.date.past(),
-        favCount: faker.number.int({ min: 0, max: 100 }),
       }))
     )
-    .returning({ componentId: schema.componentsTable.id, favCount: schema.componentsTable.favCount });
+    .returning({ componentId: schema.components.id });
 
   // Bulk insert favorites
-  const componentIdsUserIdsPairs = componentsData.flatMap(
-    ({ componentId, favCount }) =>
-      Array.from({ length: favCount }, () => ({
-        componentId: componentId!,
-        userId: faker.string.uuid(),
-      }))
+  // Each component can have between 2 and 30 favorites
+  const componentIdsUserIdsPairs = components.flatMap((component) =>
+    Array.from({ length: faker.number.int({ min: 2, max: 30 }) }, () => ({
+      componentId: component.componentId!,
+      userId: faker.string.uuid(),
+    }))
   );
-
-  await db.insert(schema.favoritesTable).values(componentIdsUserIdsPairs);
+  await db.insert(schema.favorites).values(componentIdsUserIdsPairs);
 
   // await seed(db, schema, { count: 10 }).refine((f) => ({
-  //   componentsTable: {
+  //   components: {
   //     columns: {
   //       name: f.companyName(),
   //       description: f.loremIpsum(),
