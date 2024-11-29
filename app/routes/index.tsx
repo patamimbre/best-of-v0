@@ -30,7 +30,7 @@ function Home() {
   const { data: components } = useSuspenseQuery(componentsQueryOptions());
   return (
     <main className="p-8 space-y-4">
-      <div className="flex flex-wrap justify-center items-center gap-8">
+      <div className="grid grid-cols-3 gap-8">
         {components.map((component) => (
           <ComponentCard key={component.id} component={component} />
         ))}

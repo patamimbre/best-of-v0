@@ -7,7 +7,7 @@ import { SelectComponent } from "db/schema"
 
 export function ComponentCard({ component }: Readonly<{ component: SelectComponent }>) {
   return (
-    <Card className="w-full max-w-lg overflow-hidden">
+    <Card className="flex flex-col w-full max-w-lg overflow-hidden">
       <CardHeader className="p-0">
         <div className="relative h-64 w-full">
           <img
@@ -17,7 +17,7 @@ export function ComponentCard({ component }: Readonly<{ component: SelectCompone
           />
         </div>
       </CardHeader>
-      <CardContent className="p-4">
+      <CardContent className="p-4 flex-1">
         <h2 className="text-2xl font-bold mb-2">{component.name}</h2>
         <p className="text-sm text-muted-foreground mb-4">{component.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
@@ -27,12 +27,14 @@ export function ComponentCard({ component }: Readonly<{ component: SelectCompone
             </Badge>
           ))}
         </div>
-        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+        <div className="flex items-center text-sm text-muted-foreground">
           {component.developer && (
+            <>
+              <AtSign className="h-4 w-4" />
             <Link href={`https://github.com/${component.developer}`} className="hover:underline">
-              <Github className="inline mr-1 h-4 w-4" />
-              <span><AtSign/>{component.developer}</span>
-            </Link>
+              {component.developer}
+              </Link>
+            </>
           )}
         </div>
       </CardContent>
