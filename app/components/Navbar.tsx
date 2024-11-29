@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "./ui/button";
-import { LogInIcon, LogOutIcon, PlusIcon } from "lucide-react";
+import { LogInIcon, PlusIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from "@clerk/tanstack-start";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/tanstack-start";
 
 const links = [
   { to: "/", label: "Home" },

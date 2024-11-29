@@ -59,7 +59,7 @@ export function ComponentCard({ component }: Readonly<{ component: SelectCompone
         <div className="flex">
           <Button variant="secondary">
             <Heart/>
-            <span>{12}</span>
+            <span>{component.favCount}</span>
           </Button>
         </div>
       </CardFooter>
