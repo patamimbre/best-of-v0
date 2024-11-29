@@ -14,6 +14,8 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
 import { Route as RedirectImport } from './routes/redirect'
 import { Route as PostsImport } from './routes/posts'
+import { Route as MyComponentsImport } from './routes/my-components'
+import { Route as FavoritesImport } from './routes/favorites'
 import { Route as DeferredImport } from './routes/deferred'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
@@ -43,6 +45,18 @@ const RedirectRoute = RedirectImport.update({
 const PostsRoute = PostsImport.update({
   id: '/posts',
   path: '/posts',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MyComponentsRoute = MyComponentsImport.update({
+  id: '/my-components',
+  path: '/my-components',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FavoritesRoute = FavoritesImport.update({
+  id: '/favorites',
+  path: '/favorites',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -133,6 +147,20 @@ declare module '@tanstack/react-router' {
       path: '/deferred'
       fullPath: '/deferred'
       preLoaderRoute: typeof DeferredImport
+      parentRoute: typeof rootRoute
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesImport
+      parentRoute: typeof rootRoute
+    }
+    '/my-components': {
+      id: '/my-components'
+      path: '/my-components'
+      fullPath: '/my-components'
+      preLoaderRoute: typeof MyComponentsImport
       parentRoute: typeof rootRoute
     }
     '/posts': {
@@ -270,6 +298,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof LayoutLayout2RouteWithChildren
   '/deferred': typeof DeferredRoute
+  '/favorites': typeof FavoritesRoute
+  '/my-components': typeof MyComponentsRoute
   '/posts': typeof PostsRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
@@ -286,6 +316,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof LayoutLayout2RouteWithChildren
   '/deferred': typeof DeferredRoute
+  '/favorites': typeof FavoritesRoute
+  '/my-components': typeof MyComponentsRoute
   '/redirect': typeof RedirectRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -301,6 +333,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_layout': typeof LayoutRouteWithChildren
   '/deferred': typeof DeferredRoute
+  '/favorites': typeof FavoritesRoute
+  '/my-components': typeof MyComponentsRoute
   '/posts': typeof PostsRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
@@ -320,6 +354,8 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/deferred'
+    | '/favorites'
+    | '/my-components'
     | '/posts'
     | '/redirect'
     | '/users'
@@ -335,6 +371,8 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/deferred'
+    | '/favorites'
+    | '/my-components'
     | '/redirect'
     | '/posts/$postId'
     | '/users/$userId'
@@ -348,6 +386,8 @@ export interface FileRouteTypes {
     | '/'
     | '/_layout'
     | '/deferred'
+    | '/favorites'
+    | '/my-components'
     | '/posts'
     | '/redirect'
     | '/users'
@@ -366,6 +406,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LayoutRoute: typeof LayoutRouteWithChildren
   DeferredRoute: typeof DeferredRoute
+  FavoritesRoute: typeof FavoritesRoute
+  MyComponentsRoute: typeof MyComponentsRoute
   PostsRoute: typeof PostsRouteWithChildren
   RedirectRoute: typeof RedirectRoute
   UsersRoute: typeof UsersRouteWithChildren
@@ -376,6 +418,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LayoutRoute: LayoutRouteWithChildren,
   DeferredRoute: DeferredRoute,
+  FavoritesRoute: FavoritesRoute,
+  MyComponentsRoute: MyComponentsRoute,
   PostsRoute: PostsRouteWithChildren,
   RedirectRoute: RedirectRoute,
   UsersRoute: UsersRouteWithChildren,
@@ -395,6 +439,8 @@ export const routeTree = rootRoute
         "/",
         "/_layout",
         "/deferred",
+        "/favorites",
+        "/my-components",
         "/posts",
         "/redirect",
         "/users",
@@ -412,6 +458,12 @@ export const routeTree = rootRoute
     },
     "/deferred": {
       "filePath": "deferred.tsx"
+    },
+    "/favorites": {
+      "filePath": "favorites.tsx"
+    },
+    "/my-components": {
+      "filePath": "my-components.tsx"
     },
     "/posts": {
       "filePath": "posts.tsx",

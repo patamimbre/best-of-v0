@@ -13,6 +13,7 @@ import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
 import { NotFound } from '~/components/NotFound'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
+import Navbar from '~/components/Navbar'
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -80,7 +81,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Meta />
       </head>
       <body>
-        <hr />
+        <Navbar />
         {children}
         <ScrollRestoration />
         <TanStackRouterDevtools position="bottom-right" />
