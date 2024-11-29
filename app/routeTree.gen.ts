@@ -14,16 +14,17 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
 import { Route as RedirectImport } from './routes/redirect'
 import { Route as PostsImport } from './routes/posts'
-import { Route as MyComponentsImport } from './routes/my-components'
-import { Route as FavoritesImport } from './routes/favorites'
 import { Route as DeferredImport } from './routes/deferred'
 import { Route as LayoutImport } from './routes/_layout'
+import { Route as AuthedImport } from './routes/_authed'
 import { Route as IndexImport } from './routes/index'
 import { Route as UsersIndexImport } from './routes/users.index'
 import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as UsersUserIdImport } from './routes/users.$userId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as LayoutLayout2Import } from './routes/_layout/_layout-2'
+import { Route as AuthedMyComponentsImport } from './routes/_authed/my-components'
+import { Route as AuthedFavoritesImport } from './routes/_authed/favorites'
 import { Route as PostsPostIdDeepImport } from './routes/posts_.$postId.deep'
 import { Route as LayoutLayout2LayoutBImport } from './routes/_layout/_layout-2/layout-b'
 import { Route as LayoutLayout2LayoutAImport } from './routes/_layout/_layout-2/layout-a'
@@ -48,18 +49,6 @@ const PostsRoute = PostsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const MyComponentsRoute = MyComponentsImport.update({
-  id: '/my-components',
-  path: '/my-components',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const FavoritesRoute = FavoritesImport.update({
-  id: '/favorites',
-  path: '/favorites',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const DeferredRoute = DeferredImport.update({
   id: '/deferred',
   path: '/deferred',
@@ -68,6 +57,11 @@ const DeferredRoute = DeferredImport.update({
 
 const LayoutRoute = LayoutImport.update({
   id: '/_layout',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthedRoute = AuthedImport.update({
+  id: '/_authed',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -106,6 +100,18 @@ const LayoutLayout2Route = LayoutLayout2Import.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
+const AuthedMyComponentsRoute = AuthedMyComponentsImport.update({
+  id: '/my-components',
+  path: '/my-components',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedFavoritesRoute = AuthedFavoritesImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
 const PostsPostIdDeepRoute = PostsPostIdDeepImport.update({
   id: '/posts_/$postId/deep',
   path: '/posts/$postId/deep',
@@ -135,6 +141,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthedImport
+      parentRoute: typeof rootRoute
+    }
     '/_layout': {
       id: '/_layout'
       path: ''
@@ -147,20 +160,6 @@ declare module '@tanstack/react-router' {
       path: '/deferred'
       fullPath: '/deferred'
       preLoaderRoute: typeof DeferredImport
-      parentRoute: typeof rootRoute
-    }
-    '/favorites': {
-      id: '/favorites'
-      path: '/favorites'
-      fullPath: '/favorites'
-      preLoaderRoute: typeof FavoritesImport
-      parentRoute: typeof rootRoute
-    }
-    '/my-components': {
-      id: '/my-components'
-      path: '/my-components'
-      fullPath: '/my-components'
-      preLoaderRoute: typeof MyComponentsImport
       parentRoute: typeof rootRoute
     }
     '/posts': {
@@ -183,6 +182,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/users'
       preLoaderRoute: typeof UsersImport
       parentRoute: typeof rootRoute
+    }
+    '/_authed/favorites': {
+      id: '/_authed/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof AuthedFavoritesImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/my-components': {
+      id: '/_authed/my-components'
+      path: '/my-components'
+      fullPath: '/my-components'
+      preLoaderRoute: typeof AuthedMyComponentsImport
+      parentRoute: typeof AuthedImport
     }
     '/_layout/_layout-2': {
       id: '/_layout/_layout-2'
@@ -245,6 +258,19 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
+interface AuthedRouteChildren {
+  AuthedFavoritesRoute: typeof AuthedFavoritesRoute
+  AuthedMyComponentsRoute: typeof AuthedMyComponentsRoute
+}
+
+const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedFavoritesRoute: AuthedFavoritesRoute,
+  AuthedMyComponentsRoute: AuthedMyComponentsRoute,
+}
+
+const AuthedRouteWithChildren =
+  AuthedRoute._addFileChildren(AuthedRouteChildren)
+
 interface LayoutLayout2RouteChildren {
   LayoutLayout2LayoutARoute: typeof LayoutLayout2LayoutARoute
   LayoutLayout2LayoutBRoute: typeof LayoutLayout2LayoutBRoute
@@ -298,11 +324,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof LayoutLayout2RouteWithChildren
   '/deferred': typeof DeferredRoute
-  '/favorites': typeof FavoritesRoute
-  '/my-components': typeof MyComponentsRoute
   '/posts': typeof PostsRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
+  '/favorites': typeof AuthedFavoritesRoute
+  '/my-components': typeof AuthedMyComponentsRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
   '/posts/': typeof PostsIndexRoute
@@ -316,9 +342,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof LayoutLayout2RouteWithChildren
   '/deferred': typeof DeferredRoute
-  '/favorites': typeof FavoritesRoute
-  '/my-components': typeof MyComponentsRoute
   '/redirect': typeof RedirectRoute
+  '/favorites': typeof AuthedFavoritesRoute
+  '/my-components': typeof AuthedMyComponentsRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
   '/posts': typeof PostsIndexRoute
@@ -331,13 +357,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/_authed': typeof AuthedRouteWithChildren
   '/_layout': typeof LayoutRouteWithChildren
   '/deferred': typeof DeferredRoute
-  '/favorites': typeof FavoritesRoute
-  '/my-components': typeof MyComponentsRoute
   '/posts': typeof PostsRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
+  '/_authed/favorites': typeof AuthedFavoritesRoute
+  '/_authed/my-components': typeof AuthedMyComponentsRoute
   '/_layout/_layout-2': typeof LayoutLayout2RouteWithChildren
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -354,11 +381,11 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/deferred'
-    | '/favorites'
-    | '/my-components'
     | '/posts'
     | '/redirect'
     | '/users'
+    | '/favorites'
+    | '/my-components'
     | '/posts/$postId'
     | '/users/$userId'
     | '/posts/'
@@ -371,9 +398,9 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/deferred'
+    | '/redirect'
     | '/favorites'
     | '/my-components'
-    | '/redirect'
     | '/posts/$postId'
     | '/users/$userId'
     | '/posts'
@@ -384,13 +411,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authed'
     | '/_layout'
     | '/deferred'
-    | '/favorites'
-    | '/my-components'
     | '/posts'
     | '/redirect'
     | '/users'
+    | '/_authed/favorites'
+    | '/_authed/my-components'
     | '/_layout/_layout-2'
     | '/posts/$postId'
     | '/users/$userId'
@@ -404,10 +432,9 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthedRoute: typeof AuthedRouteWithChildren
   LayoutRoute: typeof LayoutRouteWithChildren
   DeferredRoute: typeof DeferredRoute
-  FavoritesRoute: typeof FavoritesRoute
-  MyComponentsRoute: typeof MyComponentsRoute
   PostsRoute: typeof PostsRouteWithChildren
   RedirectRoute: typeof RedirectRoute
   UsersRoute: typeof UsersRouteWithChildren
@@ -416,10 +443,9 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthedRoute: AuthedRouteWithChildren,
   LayoutRoute: LayoutRouteWithChildren,
   DeferredRoute: DeferredRoute,
-  FavoritesRoute: FavoritesRoute,
-  MyComponentsRoute: MyComponentsRoute,
   PostsRoute: PostsRouteWithChildren,
   RedirectRoute: RedirectRoute,
   UsersRoute: UsersRouteWithChildren,
@@ -437,10 +463,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/_authed",
         "/_layout",
         "/deferred",
-        "/favorites",
-        "/my-components",
         "/posts",
         "/redirect",
         "/users",
@@ -450,6 +475,13 @@ export const routeTree = rootRoute
     "/": {
       "filePath": "index.tsx"
     },
+    "/_authed": {
+      "filePath": "_authed.tsx",
+      "children": [
+        "/_authed/favorites",
+        "/_authed/my-components"
+      ]
+    },
     "/_layout": {
       "filePath": "_layout.tsx",
       "children": [
@@ -458,12 +490,6 @@ export const routeTree = rootRoute
     },
     "/deferred": {
       "filePath": "deferred.tsx"
-    },
-    "/favorites": {
-      "filePath": "favorites.tsx"
-    },
-    "/my-components": {
-      "filePath": "my-components.tsx"
     },
     "/posts": {
       "filePath": "posts.tsx",
@@ -481,6 +507,14 @@ export const routeTree = rootRoute
         "/users/$userId",
         "/users/"
       ]
+    },
+    "/_authed/favorites": {
+      "filePath": "_authed/favorites.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/my-components": {
+      "filePath": "_authed/my-components.tsx",
+      "parent": "/_authed"
     },
     "/_layout/_layout-2": {
       "filePath": "_layout/_layout-2.tsx",

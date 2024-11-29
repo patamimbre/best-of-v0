@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
 import { Button } from "./ui/button";
-import { LogInIcon, LogOutIcon, PlusIcon, UploadIcon } from "lucide-react";
-import { TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-import { Tooltip } from "./ui/tooltip";
+import { LogInIcon, LogOutIcon, PlusIcon } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from "@clerk/tanstack-start";
 
 const links = [
   { to: "/", label: "Home" },
@@ -12,23 +11,29 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [auth, setAuth] = useState(true);
-
   return (
     <nav className="flex items-center justify-between px-12 py-6 border-b-2">
       <Link to="/">
         <h1 className="text-2xl font-bold">Best of v0</h1>
       </Link>
-      {auth ? (
-        <NavbarAuth handleSignOut={() => setAuth(false)} />
-      ) : (
-        <NavbarUnauth handleSignIn={() => setAuth(true)} />
-      )}
+
+      <SignedIn>
+        <NavbarAuth />
+      </SignedIn>
+
+      <SignedOut>
+        <SignInButton>
+          <Button variant="outline">
+            <LogInIcon className="w-4 h-4 mr-2" />
+            Sign in
+          </Button>
+        </SignInButton>
+      </SignedOut>
     </nav>
   );
 }
 
-function NavbarAuth({ handleSignOut }: { handleSignOut: () => void }) {
+function NavbarAuth() {
   return (
     <div className="flex items-center gap-4">
       <div className="flex items-center gap-6">
@@ -57,20 +62,13 @@ function NavbarAuth({ handleSignOut }: { handleSignOut: () => void }) {
           <TooltipContent>Create a new component</TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      <Button variant="outline" onClick={handleSignOut}>
-        <LogOutIcon className="w-4 h-4" /> Sign out
-      </Button>
-    </div>
-  );
-}
-
-function NavbarUnauth({ handleSignIn }: { handleSignIn: () => void }) {
-  return (
-    <div>
-      <Button variant="outline" onClick={handleSignIn}>
-        <LogInIcon className="w-4 h-4 mr-2" />
-        Sign in
-      </Button>
+      <UserButton
+        appearance={{
+          elements: {
+            avatarBox: "w-9 h-9",
+          },
+        }}
+      />
     </div>
   );
 }
