@@ -19,6 +19,7 @@ async function main() {
       githubUrl: faker.internet.url(),
       siteUrl: faker.internet.url(),
       imageUrl: faker.image.url(),
+      createdAt: faker.date.past(),
     })) 
   );
 
