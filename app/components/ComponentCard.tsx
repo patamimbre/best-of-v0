@@ -7,7 +7,7 @@ import { SelectComponent } from "db/schema"
 
 export function ComponentCard({ component }: Readonly<{ component: SelectComponent }>) {
   return (
-    <Card className="flex flex-col w-full max-w-lg overflow-hidden">
+    <Card className="flex flex-col w-full max-w-xl overflow-hidden">
       <CardHeader className="p-0">
         <div className="relative h-64 w-full">
           <img

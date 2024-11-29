@@ -22,6 +22,7 @@ type SearchParams = z.infer<typeof searchComponentsSchema>
 export const componentsQueryOptions = (params: SearchParams) => queryOptions({
   queryKey: ['components', params],
   queryFn: () => getComponents({ data: params }),
+  staleTime: 1000 * 60 * 5, // 5 minutes
 })
 
 const getComponents = createServerFn()
