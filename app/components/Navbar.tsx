@@ -6,7 +6,6 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/tanstack-s
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/favorites", label: "Favorites" },
   { to: "/my-components", label: "My Components" },
 ];
 
