@@ -24,7 +24,7 @@ import {
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { TagsInput } from "~/components/ui/tags-input";
-import { createComponentSchema } from "~/utils/components";
+import { createComponentSchema, selectComponentSchema } from "~/utils/components";
 
 export default function ComponentForm({
   onSubmit,
@@ -32,7 +32,7 @@ export default function ComponentForm({
   isPending,
 }: {
   onSubmit: (values: z.infer<typeof createComponentSchema>) => void;
-  initialValues?: z.infer<typeof createComponentSchema>;
+  initialValues?: z.infer<typeof selectComponentSchema>;
   isPending: boolean;
 }) {
   const [files, setFiles] = useState<File[] | null>(null);
@@ -45,8 +45,8 @@ export default function ComponentForm({
   const form = useForm<z.infer<typeof createComponentSchema>>({
     resolver: zodResolver(createComponentSchema),
     defaultValues: {
-      tags: [],
       ...initialValues,
+      tags: Array.isArray(initialValues?.tags) ? (initialValues.tags as string[]) : [],
     },
   });
 

@@ -76,7 +76,8 @@ export const getComponentQueryOptions = (id: string) =>
 export const getComponent = createServerFn()
   .validator((data: { id: string }) => z.object({ id: z.string() }).parse(data))
   .handler(async ({ data: { id } }) => {
-    return db.select().from(components).where(eq(components.id, id));
+    const [result] = await db.select().from(components).where(eq(components.id, id)).limit(1);
+    return result;
   });
 
 const getComponents = createServerFn()

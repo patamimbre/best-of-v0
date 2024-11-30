@@ -22,5 +22,9 @@ function RouteComponent() {
   const { data: component } = useSuspenseQuery(getComponentQueryOptions(Route.useParams().id));
   const { mutate: updateComponent, isPending } = updateComponentMutation();
 
-  return <ComponentForm onSubmit={(values) => updateComponent({ data: { id, ...values } })} isPending={isPending} />
+  return <ComponentForm
+    initialValues={component}
+    onSubmit={(values) => updateComponent({ data: { id, ...values } })}
+    isPending={isPending}
+  />
 }
