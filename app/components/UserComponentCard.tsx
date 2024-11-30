@@ -2,12 +2,15 @@ import { Card, CardContent, CardFooter, CardHeader } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Github, Globe, Heart, Code, AtSign } from 'lucide-react'
-import { Link } from "@tanstack/react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { SelectComponent } from "db/schema"
 import FavButton from "./FavButton"
-import { ComponentWithFavorites } from "~/utils/components"
+import { Component, ComponentWithFavorites, deleteComponentMutation } from "~/utils/components"
 
-export function ComponentCard({ component }: Readonly<{ component: ComponentWithFavorites }>) {
+export function UserComponentCard({ component }: Readonly<{ component: Component }>) {
+  const navigate = useNavigate();
+  const { mutate: deleteComponent } = deleteComponentMutation();
+
   return (
     <Card className="flex flex-col w-full max-w-xl overflow-hidden">
       <CardHeader className="p-0">
@@ -48,8 +51,9 @@ export function ComponentCard({ component }: Readonly<{ component: ComponentWith
               </a>
           )}
         </div>
-        <div className="flex">
-          <FavButton component={component} />
+        <div className="flex space-x-2">
+          <Button onClick={() => deleteComponent({ data: { id: component.id } })} variant="destructive">Delete</Button>
+          <Button onClick={() => navigate({ to: "/edit/component/$id", params: { id: component.id } })} variant="secondary">Edit</Button>
         </div>
       </CardFooter>
     </Card>

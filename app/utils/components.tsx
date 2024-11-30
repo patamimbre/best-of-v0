@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/start";
 import { db } from "db";
-import { components, favorites } from "db/schema";
+import { components, favorites, SelectComponent } from "db/schema";
 import {
   and,
   count,
@@ -60,6 +60,13 @@ export const componentsQueryOptions = (params: SearchParams) =>
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
+export const userComponentsQueryOptions = () =>
+  queryOptions({
+    queryKey: ["components", "user"],
+    queryFn: () => getUserComponents(),
+    staleTime: 1000 * 60 * 10, // 10 minutes
+  });
+
 const getComponents = createServerFn()
   .validator((data?: SearchParams) => searchComponentsSchema.parse(data))
   .handler(async ({ data: { q, orderBy, filterBy } }) => {
@@ -79,7 +86,6 @@ const getComponents = createServerFn()
           ? or(
               like(components.name, `%${q}%`),
               like(components.description, `%${q}%`),
-              like(components.developer, `%${q}%`)
             )
           : undefined
       )
@@ -99,6 +105,14 @@ const getComponents = createServerFn()
 
     return result;
   });
+
+const getUserComponents = createServerFn()
+  .handler(async () => {
+    const { userId } = await getAuth(getWebRequest());
+    return db.select().from(components).where(eq(components.userId, userId!));
+  });
+
+export type Component = SelectComponent;
 
 export type ComponentWithFavorites = Awaited<
   ReturnType<typeof getComponents>
@@ -145,17 +159,53 @@ export function toggleFavoriteMutation(componentId: string) {
   });
 }
 
-
 export const createComponentSchema = createInsertSchema(components, {
   // TODO(BES-26): Support images
   imageUrl: z.string().optional().default(faker.image.url()),
   tags: z.array(z.string()).nonempty("Please at least one item"),
+  // ignore userId
+  userId: z.string().optional(),
 })
+
+export const updateComponentSchema = createComponentSchema.refine(
+  (data) => data.id !== undefined,
+  {
+    path: ["id"],
+    message: "Id is required",
+  }
+);
 
 export const createComponent = createServerFn({ method: "POST" })
   .validator((data: z.infer<typeof createComponentSchema>) => createComponentSchema.parse(data))
   .handler(async ({ data }) => {
-    await db.insert(components).values(data);
+    const { userId } = await getAuth(getWebRequest());
+    await db.insert(components).values({ ...data, userId: userId! });
+  });
+
+export const updateComponent = createServerFn({ method: "POST" })
+  .validator((data: z.infer<typeof updateComponentSchema>) => updateComponentSchema.parse(data))
+  .handler(async ({ data }) => {
+    const { userId } = await getAuth(getWebRequest());
+    await db.update(components).set(data).where(and(eq(components.id, data.id!), eq(components.userId, userId!)));
+  });
+
+export const deleteComponent = createServerFn({ method: "POST" })
+  .validator((data: { id: string }) => z.object({ id: z.string() }).parse(data))
+  .handler(async ({ data: { id } }) => {
+    const { userId } = await getAuth(getWebRequest());
+
+    // Retrieve the component and verify it belongs to the user
+    const [{ c }] = await db.select({
+      c: count(),
+    }).from(components).where(and(eq(components.id, id), eq(components.userId, userId!)));
+    if (c === 0) throw new Error("Component not found");
+
+    // Remove the component favorites
+    // TODO(BES-43): Remove the favorites using cascade
+    await db.delete(favorites).where(eq(favorites.componentId, id));
+
+    // Remove the component
+    await db.delete(components).where(and(eq(components.id, id), eq(components.userId, userId!)));
   });
 
 export function createComponentMutation() {
@@ -165,11 +215,46 @@ export function createComponentMutation() {
     mutationFn: createComponent,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["components"] }),
+      toast.success("Component created successfully");
       // redirect to /
       navigate({ to: "/", params: {} })
     },
     onError: () => {
       toast.error("Failed to create component");
+    },
+  });
+}
+
+export function updateComponentMutation() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  return useMutation({
+    mutationFn: updateComponent,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["components"] }),
+      toast.success("Component updated successfully");
+      // redirect to /my-components
+      navigate({ to: "/my-components", params: {} })
+    },
+    onError: () => {
+      toast.error("Failed to update component");
+    },
+  });
+}
+
+export function deleteComponentMutation() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  return useMutation({
+    mutationFn: deleteComponent,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["components"] }),
+      toast.success("Component deleted successfully");
+      // redirect to /my-components
+      navigate({ to: "/my-components", params: {} })
+    },
+    onError: () => {
+      toast.error("Failed to delete component");
     },
   });
 }

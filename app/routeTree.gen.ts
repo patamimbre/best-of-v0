@@ -28,6 +28,7 @@ import { Route as AuthedMyComponentsImport } from './routes/_authed/my-component
 import { Route as PostsPostIdDeepImport } from './routes/posts_.$postId.deep'
 import { Route as LayoutLayout2LayoutBImport } from './routes/_layout/_layout-2/layout-b'
 import { Route as LayoutLayout2LayoutAImport } from './routes/_layout/_layout-2/layout-a'
+import { Route as AuthedEditComponentIdImport } from './routes/_authed/edit.component.$id'
 
 // Create/Update Routes
 
@@ -128,6 +129,12 @@ const LayoutLayout2LayoutARoute = LayoutLayout2LayoutAImport.update({
   id: '/layout-a',
   path: '/layout-a',
   getParentRoute: () => LayoutLayout2Route,
+} as any)
+
+const AuthedEditComponentIdRoute = AuthedEditComponentIdImport.update({
+  id: '/edit/component/$id',
+  path: '/edit/component/$id',
+  getParentRoute: () => AuthedRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -253,6 +260,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsPostIdDeepImport
       parentRoute: typeof rootRoute
     }
+    '/_authed/edit/component/$id': {
+      id: '/_authed/edit/component/$id'
+      path: '/edit/component/$id'
+      fullPath: '/edit/component/$id'
+      preLoaderRoute: typeof AuthedEditComponentIdImport
+      parentRoute: typeof AuthedImport
+    }
   }
 }
 
@@ -261,11 +275,13 @@ declare module '@tanstack/react-router' {
 interface AuthedRouteChildren {
   AuthedMyComponentsRoute: typeof AuthedMyComponentsRoute
   AuthedNewComponentRoute: typeof AuthedNewComponentRoute
+  AuthedEditComponentIdRoute: typeof AuthedEditComponentIdRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedMyComponentsRoute: AuthedMyComponentsRoute,
   AuthedNewComponentRoute: AuthedNewComponentRoute,
+  AuthedEditComponentIdRoute: AuthedEditComponentIdRoute,
 }
 
 const AuthedRouteWithChildren =
@@ -336,6 +352,7 @@ export interface FileRoutesByFullPath {
   '/layout-a': typeof LayoutLayout2LayoutARoute
   '/layout-b': typeof LayoutLayout2LayoutBRoute
   '/posts/$postId/deep': typeof PostsPostIdDeepRoute
+  '/edit/component/$id': typeof AuthedEditComponentIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -352,6 +369,7 @@ export interface FileRoutesByTo {
   '/layout-a': typeof LayoutLayout2LayoutARoute
   '/layout-b': typeof LayoutLayout2LayoutBRoute
   '/posts/$postId/deep': typeof PostsPostIdDeepRoute
+  '/edit/component/$id': typeof AuthedEditComponentIdRoute
 }
 
 export interface FileRoutesById {
@@ -373,6 +391,7 @@ export interface FileRoutesById {
   '/_layout/_layout-2/layout-a': typeof LayoutLayout2LayoutARoute
   '/_layout/_layout-2/layout-b': typeof LayoutLayout2LayoutBRoute
   '/posts_/$postId/deep': typeof PostsPostIdDeepRoute
+  '/_authed/edit/component/$id': typeof AuthedEditComponentIdRoute
 }
 
 export interface FileRouteTypes {
@@ -393,6 +412,7 @@ export interface FileRouteTypes {
     | '/layout-a'
     | '/layout-b'
     | '/posts/$postId/deep'
+    | '/edit/component/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -408,6 +428,7 @@ export interface FileRouteTypes {
     | '/layout-a'
     | '/layout-b'
     | '/posts/$postId/deep'
+    | '/edit/component/$id'
   id:
     | '__root__'
     | '/'
@@ -427,6 +448,7 @@ export interface FileRouteTypes {
     | '/_layout/_layout-2/layout-a'
     | '/_layout/_layout-2/layout-b'
     | '/posts_/$postId/deep'
+    | '/_authed/edit/component/$id'
   fileRoutesById: FileRoutesById
 }
 
@@ -479,7 +501,8 @@ export const routeTree = rootRoute
       "filePath": "_authed.tsx",
       "children": [
         "/_authed/my-components",
-        "/_authed/new-component"
+        "/_authed/new-component",
+        "/_authed/edit/component/$id"
       ]
     },
     "/_layout": {
@@ -550,6 +573,10 @@ export const routeTree = rootRoute
     },
     "/posts_/$postId/deep": {
       "filePath": "posts_.$postId.deep.tsx"
+    },
+    "/_authed/edit/component/$id": {
+      "filePath": "_authed/edit.component.$id.tsx",
+      "parent": "/_authed"
     }
   }
 }

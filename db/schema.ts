@@ -11,12 +11,12 @@ export const components = sqliteTable("components", {
     .notNull()
     .$type<string[]>()
     .default(sql`'[]'`),
-  developer: text().notNull(),
   v0Url: text().notNull().default(sql`''`), // optional
   githubUrl: text().notNull().default(sql`''`), // optional
   siteUrl: text().notNull().default(sql`''`), // optional
   imageUrl: text().notNull(),
   createdAt: integer({ mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
+  userId: text().notNull(),
 });
 
 export const favorites = sqliteTable("favorites", {

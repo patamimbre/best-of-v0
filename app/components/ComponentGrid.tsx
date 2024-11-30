@@ -1,5 +1,6 @@
-import { ComponentWithFavorites } from "~/utils/components";
+import { Component, ComponentWithFavorites } from "~/utils/components";
 import { ComponentCard } from "./ComponentCard";
+import { UserComponentCard } from "./UserComponentCard";
 
 
 export function RegularComponentGrid({ components }: { components: ComponentWithFavorites[] }) {
@@ -12,6 +13,15 @@ export function RegularComponentGrid({ components }: { components: ComponentWith
   )
 }
 
+export function MyComponentsGrid({ components }: { components: Component[] }) {
+  return (
+    <ComponentGrid>
+      {components.map((component) => (
+        <UserComponentCard key={component.id} component={component} />
+      ))}
+    </ComponentGrid>
+  )
+}
 
 function ComponentGrid({
   children

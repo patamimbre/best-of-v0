@@ -162,22 +162,6 @@ export default function ComponentForm({
             </FormItem>
           )}
         />
-
-        <FormField
-          control={form.control}
-          name="developer"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Github username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" type="text" {...field} />
-              </FormControl>
-              <FormDescription>Your Github username</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="v0Url"
