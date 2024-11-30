@@ -1,6 +1,7 @@
 import { foreignKey, integer, primaryKey, sqliteTable, text, unique, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
 import { relations, sql } from "drizzle-orm";
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 
 export const components = sqliteTable("components", {
   id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
@@ -11,9 +12,9 @@ export const components = sqliteTable("components", {
     .$type<string[]>()
     .default(sql`'[]'`),
   developer: text().notNull(),
-  v0Url: text().notNull(),
-  githubUrl: text().notNull(),
-  siteUrl: text().notNull(),
+  v0Url: text().notNull().default(sql`''`), // optional
+  githubUrl: text().notNull().default(sql`''`), // optional
+  siteUrl: text().notNull().default(sql`''`), // optional
   imageUrl: text().notNull(),
   createdAt: integer({ mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
 });

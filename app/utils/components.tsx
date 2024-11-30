@@ -22,6 +22,9 @@ import { match } from "ts-pattern";
 import { getAuth } from "@clerk/tanstack-start/server";
 import { getWebRequest } from "vinxi/http";
 import { toast } from "sonner";
+import { createInsertSchema } from "drizzle-zod";
+import { faker } from "@faker-js/faker";
+import { Navigate, useNavigate } from "@tanstack/react-router";
 
 export const orderByOptions = [
   { name: "newest", label: "Newest" },
@@ -138,6 +141,35 @@ export function toggleFavoriteMutation(componentId: string) {
       queryClient.invalidateQueries({ queryKey: ["components"] }),
     onError: () => {
       toast.error("Failed to toggle favorite");
+    },
+  });
+}
+
+
+export const createComponentSchema = createInsertSchema(components, {
+  // TODO(BES-26): Support images
+  imageUrl: z.string().optional().default(faker.image.url()),
+  tags: z.array(z.string()).nonempty("Please at least one item"),
+})
+
+export const createComponent = createServerFn({ method: "POST" })
+  .validator((data: z.infer<typeof createComponentSchema>) => createComponentSchema.parse(data))
+  .handler(async ({ data }) => {
+    await db.insert(components).values(data);
+  });
+
+export function createComponentMutation() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  return useMutation({
+    mutationFn: createComponent,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["components"] }),
+      // redirect to /
+      navigate({ to: "/", params: {} })
+    },
+    onError: () => {
+      toast.error("Failed to create component");
     },
   });
 }

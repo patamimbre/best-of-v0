@@ -20,9 +20,4 @@ const authStateFn = createServerFn({ method: 'GET' }).handler(async () => {
 
 export const Route = createFileRoute('/_authed')({
   beforeLoad: async () => await authStateFn(),
-  component: RouteComponent,
 })
-
-function RouteComponent() {
-  return <div>Hello "/_authed"!</div>
-}

@@ -53,10 +53,12 @@ function NavbarAuth() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="default">
-              <PlusIcon className="w-4 h-4" />
-              New
-            </Button>
+            <Link to="/new-component">
+              <Button variant="default">
+                <PlusIcon className="w-4 h-4" />
+                New
+              </Button>
+            </Link>
           </TooltipTrigger>
           <TooltipContent>Create a new component</TooltipContent>
         </Tooltip>

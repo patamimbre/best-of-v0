@@ -23,6 +23,7 @@ import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as UsersUserIdImport } from './routes/users.$userId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as LayoutLayout2Import } from './routes/_layout/_layout-2'
+import { Route as AuthedNewComponentImport } from './routes/_authed/new-component'
 import { Route as AuthedMyComponentsImport } from './routes/_authed/my-components'
 import { Route as PostsPostIdDeepImport } from './routes/posts_.$postId.deep'
 import { Route as LayoutLayout2LayoutBImport } from './routes/_layout/_layout-2/layout-b'
@@ -97,6 +98,12 @@ const PostsPostIdRoute = PostsPostIdImport.update({
 const LayoutLayout2Route = LayoutLayout2Import.update({
   id: '/_layout-2',
   getParentRoute: () => LayoutRoute,
+} as any)
+
+const AuthedNewComponentRoute = AuthedNewComponentImport.update({
+  id: '/new-component',
+  path: '/new-component',
+  getParentRoute: () => AuthedRoute,
 } as any)
 
 const AuthedMyComponentsRoute = AuthedMyComponentsImport.update({
@@ -183,6 +190,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedMyComponentsImport
       parentRoute: typeof AuthedImport
     }
+    '/_authed/new-component': {
+      id: '/_authed/new-component'
+      path: '/new-component'
+      fullPath: '/new-component'
+      preLoaderRoute: typeof AuthedNewComponentImport
+      parentRoute: typeof AuthedImport
+    }
     '/_layout/_layout-2': {
       id: '/_layout/_layout-2'
       path: ''
@@ -246,10 +260,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthedRouteChildren {
   AuthedMyComponentsRoute: typeof AuthedMyComponentsRoute
+  AuthedNewComponentRoute: typeof AuthedNewComponentRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedMyComponentsRoute: AuthedMyComponentsRoute,
+  AuthedNewComponentRoute: AuthedNewComponentRoute,
 }
 
 const AuthedRouteWithChildren =
@@ -312,6 +328,7 @@ export interface FileRoutesByFullPath {
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
   '/my-components': typeof AuthedMyComponentsRoute
+  '/new-component': typeof AuthedNewComponentRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
   '/posts/': typeof PostsIndexRoute
@@ -327,6 +344,7 @@ export interface FileRoutesByTo {
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
   '/my-components': typeof AuthedMyComponentsRoute
+  '/new-component': typeof AuthedNewComponentRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
   '/posts': typeof PostsIndexRoute
@@ -346,6 +364,7 @@ export interface FileRoutesById {
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
   '/_authed/my-components': typeof AuthedMyComponentsRoute
+  '/_authed/new-component': typeof AuthedNewComponentRoute
   '/_layout/_layout-2': typeof LayoutLayout2RouteWithChildren
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -366,6 +385,7 @@ export interface FileRouteTypes {
     | '/redirect'
     | '/users'
     | '/my-components'
+    | '/new-component'
     | '/posts/$postId'
     | '/users/$userId'
     | '/posts/'
@@ -380,6 +400,7 @@ export interface FileRouteTypes {
     | '/deferred'
     | '/redirect'
     | '/my-components'
+    | '/new-component'
     | '/posts/$postId'
     | '/users/$userId'
     | '/posts'
@@ -397,6 +418,7 @@ export interface FileRouteTypes {
     | '/redirect'
     | '/users'
     | '/_authed/my-components'
+    | '/_authed/new-component'
     | '/_layout/_layout-2'
     | '/posts/$postId'
     | '/users/$userId'
@@ -456,7 +478,8 @@ export const routeTree = rootRoute
     "/_authed": {
       "filePath": "_authed.tsx",
       "children": [
-        "/_authed/my-components"
+        "/_authed/my-components",
+        "/_authed/new-component"
       ]
     },
     "/_layout": {
@@ -487,6 +510,10 @@ export const routeTree = rootRoute
     },
     "/_authed/my-components": {
       "filePath": "_authed/my-components.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/new-component": {
+      "filePath": "_authed/new-component.tsx",
       "parent": "/_authed"
     },
     "/_layout/_layout-2": {
