@@ -24,7 +24,6 @@ import { Route as UsersUserIdImport } from './routes/users.$userId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as LayoutLayout2Import } from './routes/_layout/_layout-2'
 import { Route as AuthedMyComponentsImport } from './routes/_authed/my-components'
-import { Route as AuthedFavoritesImport } from './routes/_authed/favorites'
 import { Route as PostsPostIdDeepImport } from './routes/posts_.$postId.deep'
 import { Route as LayoutLayout2LayoutBImport } from './routes/_layout/_layout-2/layout-b'
 import { Route as LayoutLayout2LayoutAImport } from './routes/_layout/_layout-2/layout-a'
@@ -106,12 +105,6 @@ const AuthedMyComponentsRoute = AuthedMyComponentsImport.update({
   getParentRoute: () => AuthedRoute,
 } as any)
 
-const AuthedFavoritesRoute = AuthedFavoritesImport.update({
-  id: '/favorites',
-  path: '/favorites',
-  getParentRoute: () => AuthedRoute,
-} as any)
-
 const PostsPostIdDeepRoute = PostsPostIdDeepImport.update({
   id: '/posts_/$postId/deep',
   path: '/posts/$postId/deep',
@@ -183,13 +176,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsersImport
       parentRoute: typeof rootRoute
     }
-    '/_authed/favorites': {
-      id: '/_authed/favorites'
-      path: '/favorites'
-      fullPath: '/favorites'
-      preLoaderRoute: typeof AuthedFavoritesImport
-      parentRoute: typeof AuthedImport
-    }
     '/_authed/my-components': {
       id: '/_authed/my-components'
       path: '/my-components'
@@ -259,12 +245,10 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthedRouteChildren {
-  AuthedFavoritesRoute: typeof AuthedFavoritesRoute
   AuthedMyComponentsRoute: typeof AuthedMyComponentsRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
-  AuthedFavoritesRoute: AuthedFavoritesRoute,
   AuthedMyComponentsRoute: AuthedMyComponentsRoute,
 }
 
@@ -327,7 +311,6 @@ export interface FileRoutesByFullPath {
   '/posts': typeof PostsRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
-  '/favorites': typeof AuthedFavoritesRoute
   '/my-components': typeof AuthedMyComponentsRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -343,7 +326,6 @@ export interface FileRoutesByTo {
   '': typeof LayoutLayout2RouteWithChildren
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
-  '/favorites': typeof AuthedFavoritesRoute
   '/my-components': typeof AuthedMyComponentsRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -363,7 +345,6 @@ export interface FileRoutesById {
   '/posts': typeof PostsRouteWithChildren
   '/redirect': typeof RedirectRoute
   '/users': typeof UsersRouteWithChildren
-  '/_authed/favorites': typeof AuthedFavoritesRoute
   '/_authed/my-components': typeof AuthedMyComponentsRoute
   '/_layout/_layout-2': typeof LayoutLayout2RouteWithChildren
   '/posts/$postId': typeof PostsPostIdRoute
@@ -384,7 +365,6 @@ export interface FileRouteTypes {
     | '/posts'
     | '/redirect'
     | '/users'
-    | '/favorites'
     | '/my-components'
     | '/posts/$postId'
     | '/users/$userId'
@@ -399,7 +379,6 @@ export interface FileRouteTypes {
     | ''
     | '/deferred'
     | '/redirect'
-    | '/favorites'
     | '/my-components'
     | '/posts/$postId'
     | '/users/$userId'
@@ -417,7 +396,6 @@ export interface FileRouteTypes {
     | '/posts'
     | '/redirect'
     | '/users'
-    | '/_authed/favorites'
     | '/_authed/my-components'
     | '/_layout/_layout-2'
     | '/posts/$postId'
@@ -478,7 +456,6 @@ export const routeTree = rootRoute
     "/_authed": {
       "filePath": "_authed.tsx",
       "children": [
-        "/_authed/favorites",
         "/_authed/my-components"
       ]
     },
@@ -507,10 +484,6 @@ export const routeTree = rootRoute
         "/users/$userId",
         "/users/"
       ]
-    },
-    "/_authed/favorites": {
-      "filePath": "_authed/favorites.tsx",
-      "parent": "/_authed"
     },
     "/_authed/my-components": {
       "filePath": "_authed/my-components.tsx",

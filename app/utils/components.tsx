@@ -1,8 +1,22 @@
-import { queryOptions, useQueryClient, useMutation } from "@tanstack/react-query";
+import {
+  queryOptions,
+  useQueryClient,
+  useMutation,
+} from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/start";
 import { db } from "db";
 import { components, favorites } from "db/schema";
-import { and, count, asc, desc, eq, like, or, sql, getTableColumns } from "drizzle-orm";
+import {
+  and,
+  count,
+  asc,
+  desc,
+  eq,
+  like,
+  or,
+  sql,
+  getTableColumns,
+} from "drizzle-orm";
 import { z } from "zod";
 import { match } from "ts-pattern";
 import { getAuth } from "@clerk/tanstack-start/server";
@@ -15,12 +29,23 @@ export const orderByOptions = [
   { name: "popular", label: "Most Popular" },
 ];
 
+export const filterByOptions = [
+  { name: "all", label: "All" },
+  { name: "favorites", label: "Favorites" },
+];
+
 const orderBySchema = z.enum(
   orderByOptions.map((o) => o.name) as [string, ...string[]]
 );
+
+const filterBySchema = z.enum(
+  filterByOptions.map((o) => o.name) as [string, ...string[]]
+);
+
 export const searchComponentsSchema = z.object({
   q: z.string().optional().describe("Search query"),
   orderBy: orderBySchema.optional().describe("Order by").catch("newest"),
+  filterBy: filterBySchema.optional().describe("Filter by").catch("all"),
 });
 type SearchParams = z.infer<typeof searchComponentsSchema>;
 
@@ -34,11 +59,13 @@ export const componentsQueryOptions = (params: SearchParams) =>
 
 const getComponents = createServerFn()
   .validator((data?: SearchParams) => searchComponentsSchema.parse(data))
-  .handler(async ({ data: { q, orderBy } }) =>
-    db
+  .handler(async ({ data: { q, orderBy, filterBy } }) => {
+    const result = await db
       .select({
         ...getTableColumns(components),
-        favoriteUserIds: sql<string[]>`json_group_array(DISTINCT ${favorites.userId})`,
+        favoriteUserIds: sql<
+          string[]
+        >`json_group_array(DISTINCT ${favorites.userId})`,
         favoritesCount: sql<number>`count(DISTINCT ${favorites.id})`,
       })
       .from(components)
@@ -59,32 +86,46 @@ const getComponents = createServerFn()
           .with("oldest", () => asc(components.createdAt))
           .with("popular", () => desc(sql`count(DISTINCT ${favorites.id})`))
           .otherwise(() => desc(components.createdAt))
-      )
-  )
+      );
 
-export type ComponentWithFavorites = Awaited<ReturnType<typeof getComponents>>[number];
+    // TODO: Make the fav filtering at the SQL level
+    if (filterBy === "favorites") {
+      const { userId } = await getAuth(getWebRequest());
+      return result.filter((c) => c.favoriteUserIds.includes(userId!));
+    }
+
+    return result;
+  });
+
+export type ComponentWithFavorites = Awaited<
+  ReturnType<typeof getComponents>
+>[number];
 
 const toggleFavorite = createServerFn({ method: "POST" })
-  .validator((data: { componentId: string }) => z.object({ componentId: z.string() }).parse(data))
+  .validator((data: { componentId: string }) =>
+    z.object({ componentId: z.string() }).parse(data)
+  )
   .handler(async ({ data: { componentId } }) => {
-    const { userId } = await getAuth(getWebRequest())
+    const { userId } = await getAuth(getWebRequest());
     if (!userId) {
       // This can happen if the user is not signed in.
       // We can just ignore the request.
     }
 
-
     const bothIdsCondition = and(
       eq(favorites.userId, userId!),
       eq(favorites.componentId, componentId)
-    )
+    );
 
-    const [{ c }] = await db.select({ c: count() }).from(favorites).where(bothIdsCondition)
+    const [{ c }] = await db
+      .select({ c: count() })
+      .from(favorites)
+      .where(bothIdsCondition);
 
     if (c > 0) {
-      await db.delete(favorites).where(bothIdsCondition)
+      await db.delete(favorites).where(bothIdsCondition);
     } else {
-      await db.insert(favorites).values({ userId: userId!, componentId })
+      await db.insert(favorites).values({ userId: userId!, componentId });
     }
   });
 
@@ -93,7 +134,8 @@ export function toggleFavoriteMutation(componentId: string) {
   return useMutation({
     mutationFn: () => toggleFavorite({ data: { componentId } }),
     //onSuccess: () => queryClient.invalidateQueries({ queryKey: ["components", { id: componentId }] }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["components"] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["components"] }),
     onError: () => {
       toast.error("Failed to toggle favorite");
     },

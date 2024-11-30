@@ -5,33 +5,30 @@ import { db } from 'db'
 import { components } from 'db/schema';
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import { ComponentCard } from '~/components/ComponentCard';
-import { componentsQueryOptions, orderByOptions } from '~/utils/components';
+import { componentsQueryOptions, filterByOptions, orderByOptions } from '~/utils/components';
 import { searchComponentsSchema } from '~/utils/components';
 import { zodValidator } from '@tanstack/zod-adapter'
 import { Input } from '~/components/ui/input';
 import { Select, SelectValue, SelectContent, SelectItem, SelectTrigger } from '~/components/ui/select';
+import { RegularComponentGrid } from '~/components/ComponentGrid';
 
 export const Route = createFileRoute('/')({
   validateSearch: zodValidator(searchComponentsSchema),
-  loaderDeps: ({ search: { q, orderBy } }) => ({ q, orderBy }),
-  loader: async ({ context, deps: { q, orderBy } }) => {
-    await context.queryClient.ensureQueryData(componentsQueryOptions({ q, orderBy }));
+  loaderDeps: ({ search: { q, orderBy, filterBy } }) => ({ q, orderBy, filterBy }),
+  loader: async ({ context, deps: { q, orderBy, filterBy } }) => {
+    await context.queryClient.ensureQueryData(componentsQueryOptions({ q, orderBy, filterBy }));
   },
   pendingComponent: () => <div>Loading...</div>,
   component: Home,
 })
 
 function Home() {
-  const { q, orderBy } = Route.useSearch();
-  const { data: components } = useSuspenseQuery(componentsQueryOptions({ q, orderBy }));
+  const { q, orderBy, filterBy } = Route.useSearch();
+  const { data: components } = useSuspenseQuery(componentsQueryOptions({ q, orderBy, filterBy }));
   return (
     <main className="p-8 space-y-4">
       <SearchForm />
-      <div className="grid grid-cols-3 gap-8">
-        {components.map((component) => (
-          <ComponentCard key={component.id} component={component} />
-        ))}
-      </div>
+      <RegularComponentGrid components={components} />
     </main>
   )
 }
@@ -39,7 +36,7 @@ function Home() {
 function SearchForm() {
   const navigate = Route.useNavigate();
   const params = Route.useSearch();
-  const { q, orderBy } = params;
+  const { q, orderBy, filterBy } = params;
 
   // TODO: Add debounce
   return (
@@ -51,6 +48,16 @@ function SearchForm() {
         </SelectTrigger>
         <SelectContent>
           {orderByOptions.map((o) => (
+            <SelectItem key={o.name} value={o.name}>{o.label}</SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Select name="filterBy" value={filterBy} onValueChange={(value) => navigate({ search: { ...params, filterBy: value } })}>
+        <SelectTrigger className="w-1/6">
+          <SelectValue placeholder="Filter by" />
+        </SelectTrigger>
+        <SelectContent>
+          {filterByOptions.map((o) => (
             <SelectItem key={o.name} value={o.name}>{o.label}</SelectItem>
           ))}
         </SelectContent>
