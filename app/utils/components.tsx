@@ -22,7 +22,7 @@ import { match } from "ts-pattern";
 import { getAuth } from "@clerk/tanstack-start/server";
 import { getWebRequest } from "vinxi/http";
 import { toast } from "sonner";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { faker } from "@faker-js/faker";
 import { Navigate, useNavigate } from "@tanstack/react-router";
 
@@ -65,6 +65,18 @@ export const userComponentsQueryOptions = () =>
     queryKey: ["components", "user"],
     queryFn: () => getUserComponents(),
     staleTime: 1000 * 60 * 10, // 10 minutes
+  });
+
+export const getComponentQueryOptions = (id: string) =>
+  queryOptions({
+    queryKey: ["components", id],
+    queryFn: () => getComponent({ data: { id } }),
+  });
+
+export const getComponent = createServerFn()
+  .validator((data: { id: string }) => z.object({ id: z.string() }).parse(data))
+  .handler(async ({ data: { id } }) => {
+    return db.select().from(components).where(eq(components.id, id));
   });
 
 const getComponents = createServerFn()
@@ -167,6 +179,8 @@ export const createComponentSchema = createInsertSchema(components, {
   userId: z.string().optional(),
 })
 
+export const selectComponentSchema = createSelectSchema(components)
+
 export const updateComponentSchema = createComponentSchema.refine(
   (data) => data.id !== undefined,
   {
@@ -206,6 +220,14 @@ export const deleteComponent = createServerFn({ method: "POST" })
 
     // Remove the component
     await db.delete(components).where(and(eq(components.id, id), eq(components.userId, userId!)));
+  });
+
+export const componentBelongsToUser = createServerFn()
+  .validator((data: { id: string }) => z.object({ id: z.string() }).parse(data))
+  .handler(async ({ data: { id } }) => {
+    const { userId } = await getAuth(getWebRequest());
+    const [{ c }] = await db.select({ c: count() }).from(components).where(and(eq(components.id, id), eq(components.userId, userId!)));
+    return c > 0;
   });
 
 export function createComponentMutation() {
