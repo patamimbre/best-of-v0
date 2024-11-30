@@ -92,7 +92,8 @@ export function toggleFavoriteMutation(componentId: string) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: () => toggleFavorite({ data: { componentId } }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["components", { id: componentId }] }),
+    //onSuccess: () => queryClient.invalidateQueries({ queryKey: ["components", { id: componentId }] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["components"] }),
     onError: () => {
       toast.error("Failed to toggle favorite");
     },
