@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between px-12 py-6 border-b-2">
       <Link to="/">
-        <h1 className="text-2xl font-bold">Best of v0</h1>
+        <h1 className="text-2xl font-bold">Best of v0 <span className="text-xs text-muted-foreground">beta</span></h1>
       </Link>
 
       <SignedIn>
