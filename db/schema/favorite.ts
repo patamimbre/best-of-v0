@@ -5,7 +5,7 @@ import user from "./user";
 import component from "./component";
 
 const favorite = sqliteTable(
-  "favorite",
+  "favorites",
   {
     id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
     userId: text().notNull().references(() => user.id),
