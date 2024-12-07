@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { componentBelongsToUser, getComponentQueryOptions, updateComponentMutation } from '~/utils/components'
 import { useSuspenseQuery } from '@tanstack/react-query';
 import ComponentForm from '~/components/ComponentForm';
+import { componentBelongsToUser } from '~/functions/component';
+import { getComponentQueryOptions } from '~/hooks/queries';
+import { useUpdateComponentMutation } from '~/hooks/mutations';
 
 export const Route = createFileRoute('/_authed/edit/component/$id')({
   beforeLoad: async ({ params: { id } }) => {
@@ -20,7 +22,7 @@ export const Route = createFileRoute('/_authed/edit/component/$id')({
 function RouteComponent() {
   const { id } = Route.useParams();
   const { data: component } = useSuspenseQuery(getComponentQueryOptions(Route.useParams().id));
-  const { mutate: updateComponent, isPending } = updateComponentMutation();
+  const { mutate: updateComponent, isPending } = useUpdateComponentMutation();
 
   return <ComponentForm
     initialValues={component}

@@ -1,13 +1,10 @@
 import { Card, CardContent, CardFooter, CardHeader } from "~/components/ui/card"
 import { Badge } from "~/components/ui/badge"
-import { Button } from "~/components/ui/button"
-import { Github, Globe, Heart, Code, AtSign } from 'lucide-react'
-import { Link } from "@tanstack/react-router"
-import { SelectComponent } from "db/schema"
+import { Github, Globe, Heart, Code } from 'lucide-react'
+import { FullComponent } from "~/types/database"
 import FavButton from "./FavButton"
-import { ComponentWithFavorites } from "~/utils/components"
 
-export function ComponentCard({ component }: Readonly<{ component: ComponentWithFavorites }>) {
+export function ComponentCard({ component }: Readonly<{ component: FullComponent }>) {
   return (
     <Card className="flex flex-col w-full max-w-xl overflow-hidden">
       <CardHeader className="p-0">

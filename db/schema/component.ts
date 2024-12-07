@@ -14,16 +14,15 @@ const component = sqliteTable("components", {
     .notNull()
     .$type<string[]>()
     .default(sql`'[]'`),
-  v0Url: text(),
-  githubUrl: text(),
-  siteUrl: text(),
+  v0Url: text().notNull().default(''),
+  githubUrl: text().notNull().default(''),
+  siteUrl: text().notNull().default(''),
   imageUrl: text().notNull(),
   createdAt: integer({ mode: 'timestamp' }).notNull().default(sql`(unixepoch())`),
 });
 
-
-
-export const componentRelations = relations(component, ({ many }) => ({
+export const componentRelations = relations(component, ({ one, many }) => ({
+  user: one(user, { fields: [component.userId], references: [user.id] }),
   favorites: many(favorite),
 }));
 

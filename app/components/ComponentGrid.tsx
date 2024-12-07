@@ -1,9 +1,9 @@
-import { Component, ComponentWithFavorites } from "~/utils/components";
 import { ComponentCard } from "./ComponentCard";
 import { UserComponentCard } from "./UserComponentCard";
 
+import { FullComponent, SelectComponent } from "~/types/database";
 
-export function RegularComponentGrid({ components }: { components: ComponentWithFavorites[] }) {
+export function RegularComponentGrid({ components }: { components: FullComponent[] }) {
   return (
     <ComponentGrid>
       {components.map((component) => (
@@ -13,7 +13,7 @@ export function RegularComponentGrid({ components }: { components: ComponentWith
   )
 }
 
-export function MyComponentsGrid({ components }: { components: Component[] }) {
+export function MyComponentsGrid({ components }: { components: SelectComponent[] }) {
   return (
     <ComponentGrid>
       {components.map((component) => (

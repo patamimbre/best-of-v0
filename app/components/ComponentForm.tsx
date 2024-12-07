@@ -14,35 +14,21 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { CloudUpload, Paperclip } from "lucide-react";
-import {
-  FileInput,
-  FileUploader,
-  FileUploaderContent,
-  FileUploaderItem,
-} from "~/components/ui/file-upload";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { TagsInput } from "~/components/ui/tags-input";
-import { createComponentSchema, selectComponentSchema } from "~/utils/components";
+import { CreateComponentData, createComponentSchema, SelectComponentData } from "~/types/database";
 
 export default function ComponentForm({
   onSubmit,
   initialValues,
   isPending,
 }: {
-  onSubmit: (values: z.infer<typeof createComponentSchema>) => void;
-  initialValues?: z.infer<typeof selectComponentSchema>;
+  onSubmit: (values: CreateComponentData) => void;
+  initialValues?: SelectComponentData;
   isPending: boolean;
 }) {
-  const [files, setFiles] = useState<File[] | null>(null);
-
-  const dropZoneConfig = {
-    maxFiles: 5,
-    maxSize: 1024 * 1024 * 4,
-    multiple: true,
-  };
-  const form = useForm<z.infer<typeof createComponentSchema>>({
+  const form = useForm<CreateComponentData>({
     resolver: zodResolver(createComponentSchema),
     defaultValues: {
       ...initialValues,

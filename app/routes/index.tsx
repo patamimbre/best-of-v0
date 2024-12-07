@@ -2,15 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
 import { createServerFn } from "@tanstack/start";
 import { db } from "db";
-import { components } from "db/schema";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { ComponentCard } from "~/components/ComponentCard";
-import {
-  componentsQueryOptions,
-  filterByOptions,
-  orderByOptions,
-} from "~/utils/components";
-import { searchComponentsSchema } from "~/utils/components";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { Input } from "~/components/ui/input";
 import {
@@ -22,6 +15,8 @@ import {
 } from "~/components/ui/select";
 import { RegularComponentGrid } from "~/components/ComponentGrid";
 import { SignedIn } from "@clerk/tanstack-start";
+import { filterByOptions, orderByOptions, searchComponentsSchema } from "~/types/search";
+import { componentsQueryOptions } from "~/hooks/queries";
 
 export const Route = createFileRoute("/")({
   validateSearch: zodValidator(searchComponentsSchema),

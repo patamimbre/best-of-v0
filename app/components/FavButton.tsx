@@ -1,19 +1,15 @@
 import { Heart } from "lucide-react";
 
 import { Button } from "./ui/button";
-import { SelectComponent } from "db/schema";
-import { ComponentWithFavorites, toggleFavoriteMutation } from "~/utils/components";
+import { FullComponent, SelectComponent } from "~/types/database";
+import { useToggleFavoriteMutation } from "~/hooks/mutations";
 import { useAuth } from "@clerk/tanstack-start";
 import { cn } from "~/lib/utils";
 import { toast } from "sonner";
 
-export default function FavButton({
-  component,
-}: {
-  component: ComponentWithFavorites;
-}) {
+export default function FavButton({ component }: { component: FullComponent }) {
   const { userId, isSignedIn } = useAuth();
-  const { mutate: toggleFavorite } = toggleFavoriteMutation(component.id);
+  const { mutate: toggleFavorite } = useToggleFavoriteMutation(component.id);
 
   const handleFavoriteClick = () => {
     if (!isSignedIn) {
@@ -28,11 +24,11 @@ export default function FavButton({
       <Heart
         className={cn(
           userId &&
-            component.favoriteUserIds.includes(userId) &&
+            component.favorites.some((favorite) => favorite.userId === userId) &&
             "fill-red-500 stroke-red-500",
         )}
       />
-      <span>{component.favoritesCount}</span>
+      <span>{component.favorites.length}</span>
     </Button>
   );
 }

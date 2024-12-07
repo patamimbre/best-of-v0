@@ -12,7 +12,7 @@ import { ClerkProvider } from '@clerk/tanstack-start'
 import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
 import { NotFound } from '~/components/NotFound'
 import appCss from '~/styles/app.css?url'
-import { seo } from '~/utils/seo'
+import { seo } from '~/lib/seo'
 import Navbar from '~/components/Navbar'
 import { Toaster } from "~/components/ui/sonner"
 
