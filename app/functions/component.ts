@@ -29,7 +29,7 @@ export const getComponents = createServerFn({ method: "GET" })
       orderBy: match(orderBy)
         .with("newest", () => desc(component.createdAt))
         .with("oldest", () => asc(component.createdAt))
-        .with("popular", () => desc(sql`count(DISTINCT ${favorite.id})`))
+        .with("popular", () => desc(sql`(SELECT COUNT(*) FROM ${favorite} WHERE component_id = ${component.id})`))
         .otherwise(() => desc(component.createdAt))
     });
 
