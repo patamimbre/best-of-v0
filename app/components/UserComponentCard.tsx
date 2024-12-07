@@ -5,6 +5,7 @@ import { Github, Globe, Heart, Code, AtSign } from 'lucide-react'
 import { useNavigate } from "@tanstack/react-router"
 import { SelectComponent } from "~/types/database"
 import { useDeleteComponentMutation } from "~/hooks/mutations"
+import { AreYouSure } from "./AreYouSure"
 
 export function UserComponentCard({ component }: Readonly<{ component: SelectComponent }>) {
   const navigate = useNavigate();
@@ -51,7 +52,14 @@ export function UserComponentCard({ component }: Readonly<{ component: SelectCom
           )}
         </div>
         <div className="flex space-x-2">
-          <Button onClick={() => deleteComponent({ data: { id: component.id } })} variant="destructive">Delete</Button>
+          <AreYouSure
+            title="Delete component"
+            description="This action cannot be undone. This will permanently delete your component."
+            actionText="Delete"
+            action={() => deleteComponent({ data: { id: component.id } })}
+          >
+            <Button variant="destructive">Delete</Button>
+          </AreYouSure>
           <Button onClick={() => navigate({ to: "/edit/component/$id", params: { id: component.id } })} variant="secondary">Edit</Button>
         </div>
       </CardFooter>
