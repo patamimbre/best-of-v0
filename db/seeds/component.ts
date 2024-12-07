@@ -7,7 +7,7 @@ type Insertable = typeof component.$inferInsert;
 export default async function seed(db: DB) {
 
   // Pick all the user ids
-  const userIds = await db.select({ id: user.id }).from(user);
+  const userIds = await db.select({ id: user.clerkId }).from(user);
 
   // Create 10 components. The user id is picked from the list of user ids.
   const insertable = Array.from({ length: 10 }, () => (

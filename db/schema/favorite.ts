@@ -9,7 +9,7 @@ const favorite = sqliteTable(
   "favorites",
   {
     id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
-    userId: text().notNull().references(() => user.id),
+    userId: text().notNull().references(() => user.clerkId),
     componentId: text().notNull().references(() => component.id),
   },
   (table) => ({
@@ -19,7 +19,7 @@ const favorite = sqliteTable(
 
 export const favoriteRelations = relations(favorite, ({ one }) => ({
   component: one(component, { fields: [favorite.componentId], references: [component.id] }),
-  user: one(user, { fields: [favorite.userId], references: [user.id] }),
+  user: one(user, { fields: [favorite.userId], references: [user.clerkId] }),
 }));
 
 export default favorite;

@@ -9,7 +9,7 @@ export default async function seed(db: DB) {
   const components = await db.select({ id: component.id, userId: component.userId }).from(component);
 
   // Pick all the user ids
-  const userIds = await db.select({ id: user.id }).from(user);
+  const userIds = await db.select({ id: user.clerkId }).from(user);
 
   // Each component is favorited by a random number of users (except the component uploader)
   const insertable = components.flatMap((component) => {

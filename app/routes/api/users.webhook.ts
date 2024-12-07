@@ -13,6 +13,7 @@ export const APIRoute = createAPIFileRoute("/api/users/webhook")({
     await match(payload)
       .with({ type: "user.created" }, () =>
         db.insert(user).values({
+          clerkId: payload.data.id,
           email: payload.data.email_addresses[0].email_address,
         })
       )

@@ -1,4 +1,4 @@
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { createId } from "@paralleldrive/cuid2";
 import { relations } from "drizzle-orm";
 
@@ -7,8 +7,13 @@ import favorite from './favorite';
 
 const user = sqliteTable("users", {
   id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
-  email: text().notNull().unique(),
-});
+  clerkId: text().notNull().unique(),
+    email: text().notNull().unique(),
+  },
+  (t) => ({
+    clerkIdIdx: uniqueIndex("clerk_id_idx").on(t.clerkId),
+  })
+);
 
 export const userRelations = relations(user, ({ many }) => ({
   components: many(component),

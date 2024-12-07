@@ -8,6 +8,7 @@ export default async function seed(db: DB) {
   const insertable = Array.from({ length: 30 }, () => (
     {
       email: faker.internet.email(),
+      clerkId: `user_${faker.string.uuid()}`,
     } satisfies Insertable
   ));
 

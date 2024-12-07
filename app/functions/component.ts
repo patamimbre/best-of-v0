@@ -11,7 +11,6 @@ import type { CreateComponentData, UpdateComponentData } from "~/types/database"
 import type { SearchParams } from "~/types/search";
 import { searchComponentsSchema } from "~/types/search";
 
-
 export const getComponent = createServerFn({ method: "GET" })
   .validator((data: { id: string }) => z.object({ id: z.string() }).parse(data))
   .handler(async ({ data: { id } }) => db.query.component.findFirst({ where: eq(component.id, id) }));
