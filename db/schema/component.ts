@@ -7,7 +7,7 @@ import user from "./user";
 
 const component = sqliteTable("components", {
   id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
-  userId: text().notNull().references(() => user.clerkId),
+  userId: text().notNull().references(() => user.clerkId, { onDelete: 'cascade' }),
   name: text().notNull(),
   description: text().notNull(),
   tags: text({ mode: 'json' })

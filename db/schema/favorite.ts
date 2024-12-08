@@ -9,8 +9,8 @@ const favorite = sqliteTable(
   "favorites",
   {
     id: text({ length: 128 }).$defaultFn(createId).primaryKey(),
-    userId: text().notNull().references(() => user.clerkId),
-    componentId: text().notNull().references(() => component.id),
+    userId: text().notNull().references(() => user.clerkId, { onDelete: 'cascade' }),
+    componentId: text().notNull().references(() => component.id, { onDelete: 'cascade' }),
   },
   (table) => ({
     uniqueFavorite: unique("unique_favorite").on(table.userId, table.componentId),
