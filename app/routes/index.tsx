@@ -17,6 +17,7 @@ import { RegularComponentGrid } from "~/components/ComponentGrid";
 import { SignedIn } from "@clerk/tanstack-start";
 import { filterByOptions, orderByOptions, searchComponentsSchema } from "~/types/search";
 import { componentsQueryOptions } from "~/hooks/queries";
+import { Loading } from "~/components/Loading";
 
 export const Route = createFileRoute("/")({
   validateSearch: zodValidator(searchComponentsSchema),
@@ -30,7 +31,7 @@ export const Route = createFileRoute("/")({
       componentsQueryOptions({ q, orderBy, filterBy })
     );
   },
-  pendingComponent: () => <div>Loading...</div>,
+  pendingComponent: () => <Loading />,
   component: Home,
 });
 
