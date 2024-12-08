@@ -1,0 +1,698 @@
+[
+  {
+    "name": "21st.dev",
+    "description": "open source npm for shadcn/ui components. Also: Dribble for design engineers. Install UI components via shadcn CLI, or publish your own.",
+    "siteUrl": "https://21st.dev",
+    "tags": ["libs", "components", "ui", "cli", "design"]
+  },
+  {
+    "name": "Aceternity UI",
+    "description": "Copy paste the most trending react components without having to worry about styling and animations.",
+    "siteUrl": "https://ui.aceternity.com",
+    "tags": ["libs", "components", "ui", "animations"]
+  },
+  {
+    "name": "Assistant UI",
+    "description": "React Components for AI Chat.",
+    "githubUrl": "https://github.com/Yonom/assistant-ui",
+    "tags": ["libs", "components", "ui", "ai", "chat"]
+  },
+  {
+    "name": "Auto Form",
+    "description": "A React component that automatically creates a shadcn/ui form based on a zod schema.",
+    "githubUrl": "https://github.com/vantezzen/auto-form",
+    "tags": ["libs", "components", "forms", "zod", "validation"]
+  },
+  {
+    "name": "Autocomplete Select Shadcn UI",
+    "description": "Autocomplete component built with shadcn/ui and Fancy Multi Select by Maximilian Kaske.",
+    "siteUrl": "https://www.armand-salle.fr/post/autocomplete-select-shadcn-ui",
+    "tags": ["libs", "components", "forms", "autocomplete", "select"]
+  },
+  {
+    "name": "Bundui",
+    "description": "A collection of reusable animated components built with Tailwind CSS and Framer Motion.",
+    "siteUrl": "https://bundui.io",
+    "tags": ["libs", "components", "ui", "animations", "framer-motion"]
+  },
+  {
+    "name": "Capture Photo",
+    "description": "Capture-Photo is a versatile, browser-based React component designed to streamline the integration of camera functionalities directly into your web applications.",
+    "githubUrl": "https://github.com/UretzkyZvi/capture-photo",
+    "tags": ["libs", "components", "ui", "camera", "media"]
+  },
+  {
+    "name": "Clerk Elements",
+    "description": "Composable components that can be used to build custom UIs on top of Clerk's APIs.",
+    "siteUrl": "https://clerk.com/docs/elements/examples/shadcn-ui",
+    "tags": ["libs", "components", "ui", "auth", "clerk"]
+  },
+  {
+    "name": "Clerk Shadcn Theme",
+    "description": "Easily synchronize your Clerk `<SignIn />` and `<SignUp />` components with your shadcn/ui styles.",
+    "githubUrl": "https://github.com/stormynight9/clerk-shadcn-theme",
+    "tags": ["libs", "components", "ui", "auth", "clerk", "theme"]
+  },
+  {
+    "name": "Confirm Dialog",
+    "description": "A confirm dialog component built with shadcn/ui.",
+    "githubUrl": "https://github.com/Aslam97/react-confirm-dialog",
+    "tags": ["libs", "components", "ui", "dialog", "modal"]
+  },
+  {
+    "name": "Country State Dropdown",
+    "description": "This Component is built with Nextjs, Tailwindcss, shadcn/ui & Zustand for state management.",
+    "githubUrl": "https://github.com/Jayprecode/country-state-dropdown",
+    "tags": ["libs", "components", "ui", "forms", "zustand", "nextjs", "location"]
+  },
+  {
+    "name": "Cult UI",
+    "description": "A well curated set of animated shadcn-style React components for more specific use-cases.",
+    "siteUrl": "https://www.cult-ui.com/",
+    "tags": ["libs", "components", "ui", "animations"]
+  },
+  {
+    "name": "Credenza",
+    "description": "Ready-made responsive modal component for shadcn/ui.",
+    "githubUrl": "https://github.com/redpangilinan/credenza",
+    "tags": ["libs", "components", "ui", "modal", "responsive"]
+  },
+  {
+    "name": "Crypto Charts",
+    "description": "Crypto charts made for shadcn/ui using PythNetwork.",
+    "githubUrl": "https://github.com/jstnw10/crypto-charts",
+    "tags": ["libs", "components", "ui", "charts", "crypto", "data-visualization"]
+  },
+  {
+    "name": "Date Range Picker For Shadcn",
+    "description": "Includes multi-month views, text entry, preset ranges, responsive design, and date range comparisons.",
+    "githubUrl": "https://github.com/johnpolacek/date-range-picker-for-shadcn",
+    "tags": ["libs", "components", "ui", "forms", "date", "picker", "range"]
+  },
+  {
+    "name": "Date Time Picker Shadcn",
+    "description": "Beautifully Crafted Datetime Picker for your shadNext Project.",
+    "siteUrl": "https://shadcn-datetime-picker.vercel.app",
+    "tags": ["libs", "components", "ui", "forms", "date", "picker", "datetime"]
+  },
+  {
+    "name": "Datetime Picker",
+    "description": "A powerful datetime picker with support for timezones, minimum and maximum dates, and month/year selection.",
+    "siteUrl": "https://shadcn-datetime-picker-xi.vercel.app",
+    "tags": ["libs", "components", "ui", "forms", "date", "picker", "timezone"]
+  },
+  {
+    "name": "Dialog Stack",
+    "description": "Composable stacked dialogs for shadcn/ui",
+    "githubUrl": "https://github.com/haydenbleasel/dialog-stack",
+    "tags": ["libs", "components", "ui", "dialog", "modal", "stack"]
+  },
+  {
+    "name": "Dnd Dashboard",
+    "description": "A beautiful, performant dashboard with drop-to-swap layouts built using Next.js, shadcn/ui, and swapy.",
+    "githubUrl": "https://github.com/olliethedev/dnd-dashboard",
+    "tags": ["libs", "components", "ui", "dashboard", "drag-and-drop", "layout"]
+  },
+  {
+    "name": "Drag To Resize Sidebar",
+    "description": "A extended shadcn/ui drag-to-resize <Sidebar> component for Next.js applications with persisted state drag-to-resize functionality.",
+    "githubUrl": "https://github.com/lumpinif/drag-to-resize-sidebar",
+    "tags": ["libs", "components", "ui", "sidebar", "resize", "drag-and-drop"]
+  },
+  {
+    "name": "Druid UI",
+    "description": "Copy paste UI components & an Intercom inspired AI chatbot - elegant, easy to install, fully responsive and customisable. Built on top of shadcn/ui",
+    "siteUrl": "https://druidui.com/",
+    "tags": ["libs", "components", "ui", "chatbot", "ai", "responsive"]
+  },
+  {
+    "name": "Echo Editor",
+    "description": "A modern WYSIWYG rich-text editor based on tiptap and shadcn/ui",
+    "githubUrl": "https://github.com/Seedsa/echo-editor",
+    "tags": ["libs", "components", "ui", "editor", "text", "wysiwyg", "tiptap"]
+  },
+  {
+    "name": "Edil Ozi",
+    "description": "React components for developers. Gsap + framer motion + tailwind.",
+    "siteUrl": "https://edilozi.pro/",
+    "tags": ["libs", "components", "ui", "gsap", "framer-motion", "animations"]
+  },
+  {
+    "name": "Emblor",
+    "description": "A highly customizable, accessible, and fully-featured tag input component built with shadcn/ui.",
+    "githubUrl": "https://github.com/JaleelB/emblor",
+    "tags": ["libs", "components", "ui", "forms", "tags", "accessibility"]
+  },
+  {
+    "name": "Enhanced Button",
+    "description": "An enhanced version of the default shadcn-button component.",
+    "githubUrl": "https://github.com/jakobhoeg/enhanced-button",
+    "tags": ["libs", "components", "ui", "buttons"]
+  },
+  {
+    "name": "Extend UI",
+    "description": "Reusable components built on shadcn/ui to increase performance when building web applications.",
+    "siteUrl": "https://www.extend-ui.com/",
+    "tags": ["libs", "components", "ui", "performance"]
+  },
+  {
+    "name": "Fancy Area",
+    "description": "The Textarea is inspired by GitHub's PR comment section. The impressive part is the @mention support including hover cards in the preview. The goal is to reproduce it without text editor library.",
+    "siteUrl": "https://craft.mxkaske.dev/post/fancy-area",
+    "tags": ["libs", "components", "ui", "forms", "text", "mentions", "preview"]
+  },
+  {
+    "name": "Fancy Multi Select",
+    "description": "The Multi Select Component is inspired by campsite.design's and cal.com's settings forms.",
+    "siteUrl": "https://craft.mxkaske.dev/post/fancy-multi-select",
+    "tags": ["libs", "components", "ui", "forms", "select", "multi-select"]
+  },
+  {
+    "name": "Fancy Switch",
+    "description": "A fancy switch component built with shadcn/ui.",
+    "githubUrl": "https://github.com/Aslam97/react-fancy-switch",
+    "tags": ["libs", "components", "ui", "forms", "switch", "toggle"]
+  },
+  {
+    "name": "Farmui",
+    "description": "A shadcn and tailwindcss based beautifully styled and animated component library solution with its own [npm package](https://www.npmjs.com/package/@kinfe123/farm-ui) to install any component with in a component registery.",
+    "siteUrl": "https://farmui.com",
+    "tags": ["libs", "components", "ui", "animations", "npm"]
+  },
+  {
+    "name": "File Uploader",
+    "description": "A file uploader built with shadcn/ui and react-dropzone.",
+    "githubUrl": "https://github.com/sadmann7/file-uploader",
+    "tags": ["libs", "components", "ui", "forms", "file", "uploader", "react-dropzone"]
+  },
+  {
+    "name": "File Vault",
+    "description": "File upload component for React.",
+    "githubUrl": "https://github.com/ManishBisht777/file-vault",
+    "tags": ["libs", "components", "ui", "forms", "file", "uploader"]
+  },
+  {
+    "name": "Fusion UI",
+    "description": "Fusion UI library combining shadcn/ui and MagicUI.",
+    "githubUrl": "https://github.com/nyxb-ui/ui",
+    "tags": ["libs", "components", "ui"]
+  },
+  {
+    "name": "Gluestack UI",
+    "description": "React & React Native Components & Patterns - copy-paste components & patterns crafted with Tailwind CSS (NativeWind)",
+    "siteUrl": "https://gluestack.io",
+    "tags": ["libs", "components", "ui", "react-native", "mobile"]
+  },
+  {
+    "name": "Ibelick Background Snippet",
+    "description": "Ready to use collection of modern background snippets.",
+    "siteUrl": "https://bg.ibelick.com/",
+    "tags": ["libs", "components", "ui", "background", "snippets"]
+  },
+  {
+    "name": "Image Upload Shadcn",
+    "description": "Image upload component",
+    "githubUrl": "https://github.com/kushagrasarathe/image-upload-shadcn",
+    "tags": ["libs", "components", "ui", "forms", "file", "uploader", "image"]
+  },
+  {
+    "name": "Indie UI",
+    "description": "UI components with variants - [Docs](https://ui.indie-starter.dev)",
+    "githubUrl": "https://github.com/Ali-Hussein-dev/indie-ui",
+    "tags": ["libs", "components", "ui", "variants"]
+  },
+  {
+    "name": "Inspira UI",
+    "description": "UI components to build stunning animated interfaces in Vue/NuxtJS",
+    "siteUrl": "https://inspira-ui.com/",
+    "tags": ["libs", "components", "ui", "vue", "nuxt", "animations"]
+  },
+  {
+    "name": "Kokonut UI",
+    "description": "Free Modern and Customizable components build on top of shadcn for Next.js.",
+    "siteUrl": "https://kokonut.dev/",
+    "tags": ["libs", "components", "ui", "nextjs"]
+  },
+  {
+    "name": "Launch UI",
+    "description": "Landing page components built with React, Shadcn/ui and Tailwind that you can copy/paste into your project.",
+    "siteUrl": "https://www.launchuicomponents.com/",
+    "tags": ["libs", "components", "ui", "landing-page"]
+  },
+  {
+    "name": "Lingua Time",
+    "description": "A smart datetime picker which understands natural language input.",
+    "githubUrl": "https://github.com/nainglinnkhant/lingua-time",
+    "tags": ["libs", "components", "ui", "datetime", "picker", "natural-language"]
+  },
+  {
+    "name": "Lukacho UI",
+    "description": "Next Generation UI Components",
+    "siteUrl": "https://ui.lukacho.com/components",
+    "tags": ["libs", "components", "ui"]
+  },
+  {
+    "name": "Magicui",
+    "description": "React components to build beautiful landing pages using tailwindcss + framer motion + shadcn/ui",
+    "siteUrl": "https://magicui.design",
+    "tags": ["libs", "components", "ui", "landing-page", "framer-motion", "animations"]
+  },
+  {
+    "name": "Maily.to",
+    "description": "Craft beautiful emails effortlessly with notion like powerful editor.",
+    "githubUrl": "https://github.com/arikchakma/maily.to",
+    "tags": ["libs", "components", "ui", "email", "editor", "notion"]
+  },
+  {
+    "name": "Minimal Tiptap",
+    "description": "A minimal WYSIWYG editor built with shadcn/ui and tiptap.",
+    "githubUrl": "https://github.com/Aslam97/shadcn-minimal-tiptap",
+    "tags": ["libs", "components", "ui", "editor", "text", "wysiwyg", "tiptap"]
+  },
+  {
+    "name": "Mixcnui",
+    "description": "Mixui is a collection of animated or re-usable component currently for Nextjs.",
+    "githubUrl": "https://github.com/taqui-786/mixcnui",
+    "tags": ["libs", "components", "ui", "nextjs", "animations"]
+  },
+  {
+    "name": "Mynaui",
+    "description": "TailwindCSS and shadcn/ui UI Kit for Figma and React.",
+    "siteUrl": "https://mynaui.com/",
+    "tags": ["libs", "components", "ui", "figma", "design"]
+  },
+  {
+    "name": "Nextjs Components",
+    "description": "A collection of Next.js components build with TypeScript, React, shadcn/ui, Craft UI, and Tailwind CSS.",
+    "siteUrl": "https://components.bridger.to/",
+    "tags": ["libs", "components", "ui", "nextjs", "typescript"]
+  },
+  {
+    "name": "Next Shadcn Dashboard Starter",
+    "description": "Admin Dashboard Starter with Nextjs 14 and Shadcn UI",
+    "githubUrl": "https://github.com/Kiranism/next-shadcn-dashboard-starter",
+    "tags": ["libs", "components", "ui", "dashboard", "admin", "nextjs"]
+  },
+  {
+    "name": "Next Stepper",
+    "description": "A dynamic multi-step form. Built with: [ Next.js | shadcn/ui | zustand | framer-motion ]",
+    "githubUrl": "https://github.com/ebulku/next-stepper",
+    "tags": ["libs", "components", "ui", "forms", "stepper", "multi-step"]
+  },
+  {
+    "name": "Novel",
+    "description": "Novel is a Notion-style WYSIWYG editor with AI-powered autocompletion. Built with [Tiptap](https://tiptap.dev/) + [Vercel AI SDK](https://sdk.vercel.ai/docs).",
+    "githubUrl": "https://github.com/steven-tey/novel",
+    "tags": ["libs", "components", "ui", "editor", "ai", "wysiwyg", "notion"]
+  },
+  {
+    "name": "Number Flow",
+    "description": "A React component to transition, localize, and format numbers. Dependency-free. Accessible.",
+    "siteUrl": "https://number-flow.barvian.me/",
+    "tags": ["libs", "components", "ui", "numbers", "formatting", "accessibility"]
+  },
+  {
+    "name": "Origin UI",
+    "description": "Beautiful UI components built with Tailwind CSS and Next.js.",
+    "siteUrl": "https://originui.com/",
+    "tags": ["libs", "components", "ui", "nextjs"]
+  },
+  {
+    "name": "Password Input",
+    "description": "shadcn/ui custom password input.",
+    "githubUrl": "https://gist.github.com/mjbalcueva/b21f39a8787e558d4c536bf68e267398",
+    "tags": ["libs", "components", "ui", "forms", "password"]
+  },
+  {
+    "name": "Payment Gateways",
+    "description": "This repository demonstrates how to integrate popular payment gateways like Stripe, Razorpay, PayPal, and Coinbase into a web application using Next.js 14.",
+    "githubUrl": "https://github.com/PremPrakashCodes/payment-gateways",
+    "tags": ["libs", "components", "ui", "payment", "stripe", "paypal", "razorpay", "coinbase"]
+  },
+  {
+    "name": "Phone Input Shadcn UI",
+    "description": "Custom phone number component built with shadcn/ui.",
+    "siteUrl": "https://www.armand-salle.fr/post/phone-input-shadcn-ui",
+    "tags": ["libs", "components", "ui", "forms", "phone"]
+  },
+  {
+    "name": "Planner",
+    "description": "Planner is a highly adaptable scheduling component tailored for React applications.",
+    "githubUrl": "https://github.com/UretzkyZvi/planner",
+    "tags": ["libs", "components", "ui", "scheduler", "calendar", "planning"]
+  },
+  {
+    "name": "Plate",
+    "description": "A rich-text editor powered by AI.",
+    "githubUrl": "https://github.com/udecode/plate",
+    "tags": ["libs", "components", "ui", "editor", "text", "ai"]
+  },
+  {
+    "name": "Plate Select Editor",
+    "description": "A rich multi-select editor.",
+    "githubUrl": "https://platejs.org/docs/multi-select",
+    "tags": ["libs", "components", "ui", "editor", "select", "multi-select"]
+  },
+  {
+    "name": "Pqoqubbw",
+    "description": "Open-source collection of smooth crafted animated icons for your projects.",
+    "siteUrl": "https://icons.pqoqubbw.dev/",
+    "tags": ["libs", "components", "ui", "icons", "animations"]
+  },
+  {
+    "name": "Pricing Page Shadcn",
+    "description": "Pricing Page made with shadcn/ui & Next.js 14. Completely customizable.",
+    "githubUrl": "https://github.com/m4nute/pricing-page-shadcn",
+    "tags": ["libs", "components", "ui", "pricing", "nextjs"]
+  },
+  {
+    "name": "Progress Button",
+    "description": "An extension of shadcn/ui button component that uses a state machine to drive a progress UX.",
+    "githubUrl": "https://github.com/tomredman/ProgressButton",
+    "tags": ["libs", "components", "ui", "buttons", "progress", "state-machine"]
+  },
+  {
+    "name": "React Dnd Kit Tailwind Shadcn UI",
+    "description": "Drag and drop Accessible kanban board implementing using React, dnd-kit, tailwind, and shadcn/ui.",
+    "githubUrl": "https://github.com/Georgegriff/react-dnd-kit-tailwind-shadcn-ui",
+    "tags": ["libs", "components", "ui", "drag-and-drop", "kanban", "accessibility"]
+  },
+  {
+    "name": "React Highlight Popover",
+    "description": "A headless react component for creating popovers on text selection with zero dependencies.",
+    "siteUrl": "https://react-highlight-popover.omsimos.com",
+    "tags": ["libs", "components", "ui", "popover", "text-selection", "headless"]
+  },
+  {
+    "name": "React Select",
+    "description": "Implementation of the react-select library with shadcn styling. Support for Select, Async-Select, Multi-Select with many configurable options",
+    "githubUrl": "https://gist.github.com/ilkou/7bf2dbd42a7faf70053b43034fc4b5a4",
+    "tags": ["libs", "components", "ui", "forms", "select", "async", "multi-select"]
+  },
+  {
+    "name": "Recursive Dnd Kanban Board",
+    "description": "Recursive drag and drop Accessible kanban board implementing using Next.js, @dnd-kit, tailwind and shadcn/ui.",
+    "githubUrl": "https://github.com/mehrdadrafiee/recursive-dnd-kanban-board",
+    "tags": ["libs", "components", "ui", "drag-and-drop", "kanban", "accessibility", "recursive"]
+  },
+  {
+    "name": "Roadmap UI",
+    "description": "Composeable React components for building interactive roadmaps.",
+    "githubUrl": "https://github.com/haydenbleasel/roadmap-ui",
+    "tags": ["libs", "components", "ui", "roadmap", "planning"]
+  },
+  {
+    "name": "Search Address",
+    "description": "The SearchAddress component provides a flexible and interactive search interface for addresses, utilizing the powerful Nominatim service from OpenStreetMap.",
+    "githubUrl": "https://github.com/UretzkyZvi/search-address",
+    "tags": ["libs", "components", "ui", "search", "address", "maps", "openstreetmap"]
+  },
+  {
+    "name": "Shadcn Address Autocomplete",
+    "description": "An address autocomplete component built with Google Places API and shadcn components.",
+    "githubUrl": "https://github.com/NiazMorshed2007/shadcn-address-autocomplete",
+    "tags": ["libs", "components", "ui", "autocomplete", "address", "google-places"]
+  },
+  {
+    "name": "Shadcn Admin",
+    "description": "Admin Dashboard UI built with shadcn/ui and Vite.",
+    "githubUrl": "https://github.com/satnaing/shadcn-admin",
+    "tags": ["libs", "components", "ui", "admin", "dashboard", "vite"]
+  },
+  {
+    "name": "Shadcn Blocks",
+    "description": "Blocks is the official shadcn/ui pre-made but customizable components that can be copied and pasted into your projects.",
+    "siteUrl": "https://ui.shadcn.com/blocks",
+    "tags": ["libs", "components", "ui", "blocks", "official"]
+  },
+  {
+    "name": "Shadcn Cal",
+    "description": "A copy of the monthly calendar used by Cal.com with shadcn/ui, Radix Colors and React Aria.",
+    "siteUrl": "https://shadcn-cal-com.vercel.app/?date=2024-04-29",
+    "tags": ["libs", "components", "ui", "calendar", "scheduling"]
+  },
+  {
+    "name": "Shadcn Calendar Heatmap",
+    "description": "Modern alternative to primitive react heatmaps built on top of shadcn/ui calendar component.",
+    "siteUrl": "https://shadcn-calendar-heatmap.vercel.app/",
+    "tags": ["libs", "components", "ui", "calendar", "heatmap", "data-visualization"]
+  },
+  {
+    "name": "Shadcn Calendar Component",
+    "description": "A calendar date picker component designed with shadcn/ui.",
+    "githubUrl": "https://github.com/sersavan/shadcn-calendar-component",
+    "tags": ["libs", "components", "ui", "calendar", "date", "picker"]
+  },
+  {
+    "name": "Shadcn Chat",
+    "description": "Customizable and reusable chat component for you to use in your projects.",
+    "githubUrl": "https://github.com/jakobhoeg/shadcn-chat",
+    "tags": ["libs", "components", "ui", "chat", "messaging"]
+  },
+  {
+    "name": "Shadcn Carousel Testimonials",
+    "description": "shadcn UI Carousel Testimonials.",
+    "githubUrl": "https://github.com/johanguse/shadcn-carousel-testimonials",
+    "tags": ["libs", "components", "ui", "carousel", "testimonials"]
+  },
+  {
+    "name": "Shadcn Chatbot Kit",
+    "description": "Beautifully designed chatbot components based on shadcn/ui. Fully customizable and owned by you.",
+    "siteUrl": "https://shadcn-chatbot-kit.vercel.app/",
+    "tags": ["libs", "components", "ui", "chatbot", "ai"]
+  },
+  {
+    "name": "Shadcn Color Picker",
+    "description": "A color picker build with react-color and shadcn",
+    "siteUrl": "https://shadcn-color-picker.vercel.app/",
+    "tags": ["libs", "components", "ui", "color", "picker"]
+  },
+  {
+    "name": "Shadcn Cookie Consent",
+    "description": "Beautifully designed, customizable cookie consent for web built on top of shadcn-ui and tailwind-css!",
+    "githubUrl": "https://github.com/r2hu1/shadcn-cookie-consent",
+    "tags": ["libs", "components", "ui", "cookie", "consent", "gdpr"]
+  },
+  {
+    "name": "Shadcn Country Dropdown",
+    "description": "An ISO 3166 compliant dropdown component for selecting a country.",
+    "siteUrl": "https://shadcn-country-dropdown.vercel.app/",
+    "tags": ["libs", "components", "ui", "country", "dropdown", "iso"]
+  },
+  {
+    "name": "Shadcn Data Table Advanced Col Opions",
+    "description": "Column-resizing option to shadcn/ui DataTable.",
+    "githubUrl": "https://github.com/danielagg/shadcn-data-table-advanced-col-opions",
+    "tags": ["libs", "components", "ui", "table", "data", "resize"]
+  },
+  {
+    "name": "Shadcn Date Picker",
+    "description": "Advanced date picker with range selection, year and month selection, and more.",
+    "siteUrl": "https://date-picker.luca-felix.com",
+    "tags": ["libs", "components", "ui", "date", "picker", "range"]
+  },
+  {
+    "name": "Shadcn Drag Table",
+    "description": "A drag-and-drop table component using shadcn/ui and Next.js.",
+    "githubUrl": "https://github.com/zenoncao/shadcn-drag-table",
+    "tags": ["libs", "components", "ui", "table", "drag-and-drop"]
+  },
+  {
+    "name": "Shadcn Editor",
+    "description": "Lexical editor using shadcn theme and components.",
+    "githubUrl": "https://github.com/htmujahid/shadcn-editor",
+    "tags": ["libs", "components", "ui", "editor", "text", "lexical"]
+  },
+  {
+    "name": "Shadcn Extends",
+    "description": "Intended to be a collection of components built using shadcn/ui.",
+    "githubUrl": "https://github.com/lucioew28/extends",
+    "tags": ["libs", "components", "ui", "collection"]
+  },
+  {
+    "name": "Shadcn Extension",
+    "description": "An open-source component collection that extends your UI library, built using shadcn/ui components.", 
+    "githubUrl": "https://github.com/BelkacemYerfa/shadcn-extension",
+    "tags": ["libs", "components", "ui", "collection", "extension"]
+  },
+  {
+    "name": "Shadcn Image Cropper",
+    "description": "A minimal image cropper UI built with shadcn and the react-image-crop library.",
+    "githubUrl": "https://github.com/sujjeee/shadcn-image-cropper",
+    "tags": ["libs", "components", "ui", "image", "cropper"]
+  },
+  {
+    "name": "Shadcn Linear Combobox",
+    "description": "A copy of the combobox that Linear uses to set the priority of a task.",
+    "githubUrl": "https://github.com/damianricobelli/shadcn-linear-combobox",
+    "tags": ["libs", "components", "ui", "combobox", "select", "priority"]
+  },
+  {
+    "name": "Shadcn Multi Select Component",
+    "description": "A multi-select component designed with shadcn/ui.",
+    "githubUrl": "https://github.com/sersavan/shadcn-multi-select-component",
+    "tags": ["libs", "components", "ui", "select", "multi-select"]
+  },
+  {
+    "name": "Shadcn Phone Input 2",
+    "description": "Simple and formatted phone input component built with shadcn/ui y libphonenumber-js.",
+    "githubUrl": "https://github.com/damianricobelli/shadcn-phone-input",
+    "tags": ["libs", "components", "ui", "phone", "input", "validation"]
+  },
+  {
+    "name": "Shadcn Phone Input",
+    "description": "Customizable phone input component with proper validation for any country.",
+    "githubUrl": "https://github.com/omeralpi/shadcn-phone-input",
+    "tags": ["libs", "components", "ui", "phone", "input", "validation", "international"]
+  },
+  {
+    "name": "Shadcn Spinner",
+    "description": "Spinner component for shadcn/ui.",
+    "githubUrl": "https://github.com/allipiopereira/shadcn-spinner",
+    "tags": ["libs", "components", "ui", "spinner", "loading"]
+  },
+  {
+    "name": "Shadcn Stepper",
+    "description": "A complete stepper component built with shadcn/ui.",
+    "githubUrl": "https://github.com/damianricobelli/shadcn-stepper",
+    "tags": ["libs", "components", "ui", "stepper", "wizard", "steps"]
+  },
+  {
+    "name": "Shadcn Table V2",
+    "description": "shadcn/ui table component with server-side sorting, filtering, and pagination.",
+    "githubUrl": "https://github.com/sadmann7/shadcn-table",
+    "tags": ["libs", "components", "ui", "table", "sorting", "filtering", "pagination"]
+  },
+  {
+    "name": "Shadcn Timeline",
+    "description": "Customizable and re-usable timeline component for you to use in your projects. Built on top of shadcn.",
+    "githubUrl": "https://github.com/timDeHof/shadcn-timeline",
+    "tags": ["libs", "components", "ui", "timeline", "chronological"]
+  },
+  {
+    "name": "Shadcn Timeline 2",
+    "description": "Shadcn timeline component built with shadcn/ui.",
+    "siteUrl": "https://timeline.rilcy.app",
+    "tags": ["libs", "components", "ui", "timeline", "chronological"]
+  },
+  {
+    "name": "Shadcn Tiptap",
+    "description": "Collection of custom extensions and toolbars for Tiptap editor.",
+    "githubUrl": "https://github.com/NiazMorshed2007/shadcn-tiptap",
+    "tags": ["libs", "components", "ui", "editor", "rich-text", "tiptap"]
+  },
+  {
+    "name": "Shadcn Tree View",
+    "description": "A component for hierarchical lists of data with nested levels that can be expanded and collapsed.",
+    "githubUrl": "https://github.com/mrlightful/shadcn-tree-view",
+    "tags": ["libs", "components", "ui", "tree", "hierarchical", "navigation"]
+  },
+  {
+    "name": "Shadcn UI Blocks",
+    "description": "A collection of Over 10+ fully responsive, UI blocks you can drop into your shadcn/ui projects and customize to your heart's content.",
+    "siteUrl": "https://shadcn-ui-blocks.vercel.app/",
+    "tags": ["libs", "components", "ui", "blocks", "responsive", "templates"]
+  },
+  {
+    "name": "Shadcn UI Expansions",
+    "description": "A lots of useful components which shadcn/ui does not have out of the box.",
+    "githubUrl": "https://github.com/hsuanyi-chou/shadcn-ui-expansions",
+    "tags": ["libs", "components", "ui", "extensions", "collection"]
+  },
+  {
+    "name": "Shadcn UI Sidebar",
+    "description": "A stunning, functional and responsive retractable sidebar built on top of shadcn/ui.",
+    "githubUrl": "https://github.com/salimi-my/shadcn-ui-sidebar",
+    "tags": ["libs", "components", "ui", "sidebar", "navigation", "responsive"]
+  },
+  {
+    "name": "Shadcn UI Templates",
+    "description": "A collection of Free & Premium templates and resources for shadcn/ui.",
+    "siteUrl": "https://shadcnui-templates.com",
+    "tags": ["libs", "components", "ui", "templates", "resources", "premium"]
+  },
+  {
+    "name": "SimpleKit",
+    "description": "Responsive connect wallet and account component built on top of Wagmi and shadcn/ui.",
+    "githubUrl": "https://github.com/vaunblu/SimpleKit",
+    "tags": ["libs", "components", "ui", "wallet", "web3", "wagmi"]
+  },
+  {
+    "name": "Solanauth",
+    "description": "Responsive Solana wallet authentication and account modal built on top of @solana/web3.js with NextAuth integration and shadcn/ui",
+    "siteUrl": "https://solanauth.vercel.app/",
+    "tags": ["libs", "components", "ui", "solana", "web3", "auth", "nextauth"]
+  },
+  {
+    "name": "Sortable",
+    "description": "A sortable component built with shadcn/ui, radix ui, and dnd-kit.",
+    "githubUrl": "https://github.com/sadmann7/sortable",
+    "tags": ["libs", "components", "ui", "drag-and-drop", "sorting", "dnd-kit"]
+  },
+  {
+    "name": "Spectrum UI",
+    "description": "Spectrum UI is a collection of re-usable components built using Aceternity UI Magic UI and shadn/ui",
+    "githubUrl": "https://github.com/arihantcodes/spectrum-ui",
+    "tags": ["libs", "components", "ui", "collection", "aceternity"]
+  },
+  {
+    "name": "Stocks",
+    "description": "Stock Picker using Next.js, React Server Components, and shadcn/ui charts.",
+    "githubUrl": "https://github.com/aryanvichare/stocks",
+    "tags": ["libs", "components", "ui", "stocks", "charts", "finance"]
+  },
+  {
+    "name": "Stunning UI",
+    "description": "Stunning UI is a collection of interactive Tailwind CSS components built for Vue and Nuxt.",
+    "siteUrl": "https://stunningui.design",
+    "tags": ["libs", "components", "ui", "vue", "nuxt", "tailwind"]
+  },
+  {
+    "name": "Supercharged Shadcn Components",
+    "description": "A collection of ready-to-use components specializing in building simpler, type-safe react-hook-form components inspired by Material-UI and other libraries.",
+    "githubUrl": "https://github.com/slickwit/supercharged-shadcn-components",
+    "tags": ["libs", "components", "ui", "forms", "react-hook-form", "material-ui"]
+  },
+  {
+    "name": "Time Picker",
+    "description": "A simple TimePicker for your shadcn/ui project.",
+    "githubUrl": "https://github.com/openstatusHQ/time-picker",
+    "tags": ["libs", "components", "ui", "time", "picker", "date"]
+  },
+  {
+    "name": "Tremor Raw",
+    "description": "Copy & paste React components to build modern web applications. Good for building charts.",
+    "githubUrl": "https://github.com/tremorlabs/tremor-raw",
+    "tags": ["libs", "components", "ui", "charts", "data-visualization"]
+  },
+  {
+    "name": "Twblocks",
+    "description": "Website blocks to copy/paste - based on shadcn & Radix using Tailwind and NextJS",
+    "githubUrl": "https://github.com/tommyjepsen/twblocks",
+    "tags": ["libs", "components", "ui", "blocks", "templates", "nextjs"]
+  },
+  {
+    "name": "UI Beats",
+    "description": "Collection of Animated React Components.",
+    "siteUrl": "https://uibeats.com",
+    "tags": ["libs", "components", "ui", "animations", "collection"]
+  },
+  {
+    "name": "Onborda",
+    "description": "Give your application the onboarding it deserves with Onborda product tour for Next.js",
+    "githubUrl": "https://github.com/uixmat/onborda",
+    "tags": ["libs", "components", "ui", "onboarding", "tour", "nextjs"]
+  },
+  {
+    "name": "Vaul",
+    "description": "Drawer component for React.",
+    "siteUrl": "https://vaul.emilkowal.ski/",
+    "tags": ["libs", "components", "ui", "drawer", "modal"]
+  },
+  {
+    "name": "Zoom Charts",
+    "description": "Zoomable Charts on top of shadcn/ui Charts.",
+    "githubUrl": "https://github.com/shelwinsunga/zoom-chart-demo",
+    "tags": ["libs", "components", "ui", "charts", "zoom", "data-visualization"]
+  }
+]

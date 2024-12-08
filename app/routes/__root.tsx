@@ -29,7 +29,7 @@ export const Route = createRootRouteWithContext<{
         content: 'width=device-width, initial-scale=1',
       },
       ...seo({
-        title: 'Best of v0',
+        title: 'Best of v0 & shadcn/ui',
         description: `Find and share the best components made with v0 and shadcn/ui`,
       }),
     ],

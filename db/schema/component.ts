@@ -17,8 +17,7 @@ const component = sqliteTable("components", {
   v0Url: text().notNull().default(''),
   githubUrl: text().notNull().default(''),
   siteUrl: text().notNull().default(''),
-  imageUrl: text().notNull(),
-    createdAt: integer({ mode: "timestamp" }).notNull().default(sql`(unixepoch())`),
+  createdAt: integer({ mode: "timestamp" }).notNull().default(sql`(unixepoch())`),
   },
   (t) => ({
     userIdIdx: index("user_id_idx").on(t.userId),

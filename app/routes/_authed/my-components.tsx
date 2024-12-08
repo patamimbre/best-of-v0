@@ -29,5 +29,7 @@ function RouteComponent() {
     </div>
   }
 
-  return <MyComponentsGrid components={components} />
+  return <div className="p-8">
+    <MyComponentsGrid components={components} />
+  </div>
 }

@@ -16,9 +16,9 @@ async function main() {
     await db.delete(table);
   }
 
-  await seeds.user(db);
+  // await seeds.user(db);
   await seeds.component(db);
-  await seeds.favorite(db);
+  // await seeds.favorite(db);
 }
 
 main().catch(console.error);
