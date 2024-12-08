@@ -44,7 +44,7 @@ function NavbarAuth() {
             activeProps={{
               className: "font-semibold text-primary",
             }}
-            activeOptions={{ exact: true }}
+            activeOptions={{ exact: false }}
           >
             {link.label}
           </Link>
