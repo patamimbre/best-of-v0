@@ -71,9 +71,6 @@ export const deleteComponent = createServerFn({ method: "POST" })
     const componentExists = await db.query.component.findFirst({ where: and(eq(component.id, id), eq(component.userId, userId!)) });
     if (!componentExists) throw new Error("Component not found");
 
-    // TODO(BES-43): Remove the favorites using cascade
-    await db.delete(favorite).where(eq(favorite.componentId, id));
-
     // Remove the component
     await db.delete(component).where(and(eq(component.id, id), eq(component.userId, userId!)));
   });

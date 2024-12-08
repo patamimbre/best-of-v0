@@ -53,7 +53,6 @@ function SearchForm() {
   const params = Route.useSearch();
   const { q, orderBy, filterBy } = params;
 
-  // TODO: Add debounce
   return (
     <form className="flex gap-2">
       <Input
