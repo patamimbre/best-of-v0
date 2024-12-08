@@ -12,7 +12,6 @@ const EnvSchema = z.object({
     TURSO_AUTH_TOKEN: z.string(),
     CLERK_PUBLISHABLE_KEY: z.string(),
     CLERK_SECRET_KEY: z.string(),
-    SIGNING_SECRET: z.string(),
     DB_MIGRATING: stringBoolean,
     DB_SEEDING: stringBoolean,
 });
